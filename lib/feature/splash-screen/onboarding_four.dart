@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../login/login.dart';
+import '../signup/signup.dart';
 
 class OnboardingFour extends StatelessWidget {
   const OnboardingFour({super.key});
@@ -108,10 +109,10 @@ class OnboardingFour extends StatelessWidget {
                               ),
                             ),
                             onPressed: () {
-                              /*Navigator.push(
+                              Navigator.push(
                                   context,
-                                  MaterialPageRoute(builder: (context) => OnboardingOne()),
-                                );*/
+                                  MaterialPageRoute(builder: (context) => Signup()),
+                                );
                             },
                           ),
                         ),

@@ -3,6 +3,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/services.dart';
 import '../splash-screen/onboarding_four.dart';
+import '../signup/signup.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class Login extends StatefulWidget {
@@ -180,12 +181,14 @@ class LoginState extends State<Login> {
                                       ),
                                       recognizer: TapGestureRecognizer()
                                         ..onTap = () {
-                                          /*Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) => const OnboardingFour()),
-                                      );*/
-                                        }),
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) => Signup()
+                                            ),
+                                          );
+                                        }
+                                        ),
                                 ),
                               ]
                           )
