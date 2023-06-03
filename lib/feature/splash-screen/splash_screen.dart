@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:flutter/services.dart';
+
 import 'onboarding_one.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -30,27 +29,19 @@ class _SplashScreenState extends State<SplashScreen> {
           scaffoldBackgroundColor: Color(0xFFe2e4e3),
         ),
         home: Scaffold(
-          body: Center(
-            child: Material(
-              child: InkWell(
-                /*onTap: () {
+            body: Center(
+                child: Material(
+          child: InkWell(
+            /*onTap: () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => OnboardingOne()),
                   );
                 },*/
 
-                child: Image.asset('image/splash-screen/logo.png',
-                      width: 110.0, height: 110.0),
-
-              ),
-            )
-          )
-        )
-    );
+            child: Image.asset('assets/image/splash-screen/logo.png',
+                width: 110.0, height: 110.0),
+          ),
+        ))));
   }
-
 }
-
-
-
