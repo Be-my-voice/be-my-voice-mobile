@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../login/login.dart';
 
 class OnboardingFour extends StatelessWidget {
   const OnboardingFour({super.key});
@@ -69,15 +70,15 @@ class OnboardingFour extends StatelessWidget {
                                   RoundedRectangleBorder>(
                                 RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(
-                                      25), // Set border radius
+                                      25),
                                 ),
                               ),
                             ),
                             onPressed: () {
-                              /*Navigator.push(
+                              Navigator.push(
                                   context,
                                   MaterialPageRoute(builder: (context) => Login()),
-                                ); */
+                                );
                             },
                           ),
                         ),
