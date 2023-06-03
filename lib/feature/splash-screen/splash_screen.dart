@@ -9,7 +9,7 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  /*@override
+  @override
   void initState() {
     super.initState();
     Future.delayed(Duration(seconds: 3), () {
@@ -18,7 +18,7 @@ class _SplashScreenState extends State<SplashScreen> {
         MaterialPageRoute(builder: (context) => OnboardingOne()),
       );
     });
-  }*/
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,18 +28,17 @@ class _SplashScreenState extends State<SplashScreen> {
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           scaffoldBackgroundColor: Color(0xFFe2e4e3),
-          // Set the desired background color here
         ),
         home: Scaffold(
           body: Center(
             child: Material(
               child: InkWell(
-                onTap: () {
+                /*onTap: () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => OnboardingOne()),
                   );
-                },
+                },*/
 
                 child: Image.asset('image/splash-screen/logo.png',
                       width: 110.0, height: 110.0),

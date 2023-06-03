@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/services.dart';
+import 'onboarding_four.dart';
 
 class OnboardingThree extends StatelessWidget {
+  const OnboardingThree({super.key});
 
-  Widget build(context){
-
+  @override
+  Widget build(BuildContext context){
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         home: Stack(
@@ -18,6 +21,13 @@ class OnboardingThree extends StatelessWidget {
                 text: TextSpan(
                   text: 'Skip',
                   style: TextStyle( fontSize:15, color: Colors.grey,),
+                    recognizer: TapGestureRecognizer()
+                      ..onTap = () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => const OnboardingFour()),
+                        );
+                      }
                 ),
               ),
             ),
@@ -68,11 +78,19 @@ class OnboardingThree extends StatelessWidget {
                                 Container(
                                   width:110,
                                 ),
-                                Icon(
-                                  Icons.arrow_circle_right_sharp,
-                                  color: Color(0xFF147B72),
-                                  size: 32.0,
-                                )
+                                GestureDetector(
+                                  onTap: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(builder: (context) => OnboardingFour()),
+                                    );
+                                  },
+                                  child: Icon(
+                                    Icons.arrow_circle_right_sharp,
+                                    color: Color(0xFF147B72),
+                                    size: 32.0,
+                                  ),
+                                ),
                               ]
                           )
                         ]
