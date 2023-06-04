@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/services.dart';
-import '../splash-screen/onboarding_four.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'signup_finish.dart';
 
 class Signup extends StatefulWidget {
   createState() {
@@ -66,14 +66,14 @@ class SignupState extends State<Signup> {
                         height:50,
                       ),
                       Container(
-                        margin: EdgeInsets.only(left:15.0, right:15.0,top:5, bottom:5 ),
+                        margin: EdgeInsets.only(left:15.0, right:15.0,top:5, bottom:15 ),
                         child: TextFormField(
                           decoration: InputDecoration(
                             contentPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 5.0),
                             hintText: 'Enter your name',
                             prefixIcon: Icon(Icons.person_outline_sharp),
                             border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(25.0),
+                              borderRadius: BorderRadius.circular(20.0),
                             ),
                           ),
                           keyboardType: TextInputType.text,
@@ -83,14 +83,14 @@ class SignupState extends State<Signup> {
                         ),
                       ),
                       Container(
-                        margin: EdgeInsets.only(left:15.0, right:15.0,top:5, bottom:5 ),
+                        margin: EdgeInsets.only(left:15.0, right:15.0,top:5, bottom:15 ),
                         child: TextFormField(
                           decoration: InputDecoration(
                             contentPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 5.0),
                             hintText: 'Enter your contact number',
                             prefixIcon: Icon(Icons.call_sharp),
                             border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(25.0),
+                              borderRadius: BorderRadius.circular(20.0),
                             ),
                           ),
                           keyboardType: TextInputType.text,
@@ -100,14 +100,14 @@ class SignupState extends State<Signup> {
                         ),
                       ),
                       Container(
-                        margin: EdgeInsets.only(left:15.0, right:15.0,top:5, bottom:5 ),
+                        margin: EdgeInsets.only(left:15.0, right:15.0,top:5, bottom:15 ),
                         child: TextFormField(
                           decoration: InputDecoration(
                             contentPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 5.0),
                             hintText: 'Enter your Date of Birth',
                             prefixIcon: Icon(Icons.date_range_outlined),
                             border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(25.0),
+                              borderRadius: BorderRadius.circular(20.0),
                             ),
                           ),
                           keyboardType: TextInputType.text,
@@ -117,14 +117,14 @@ class SignupState extends State<Signup> {
                         ),
                       ),
                       Container(
-                        margin: EdgeInsets.only(left:15.0, right:15.0,top:5, bottom:5 ),
+                        margin: EdgeInsets.only(left:15.0, right:15.0,top:5, bottom:15 ),
                         child: TextFormField(
                           decoration: InputDecoration(
                             contentPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 5.0),
                             hintText: 'Enter your email',
                             prefixIcon: Icon(Icons.email_outlined),
                             border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(25.0),
+                              borderRadius: BorderRadius.circular(20.0),
                             ),
                           ),
                           keyboardType: TextInputType.text,
@@ -134,7 +134,7 @@ class SignupState extends State<Signup> {
                         ),
                       ),
                       Container(
-                        margin: EdgeInsets.only(left:15.0, right:15.0,top:5, bottom:5 ),
+                        margin: EdgeInsets.only(left:15.0, right:15.0,top:5, bottom:15 ),
                         child: TextFormField(
                           obscureText: true,
                           decoration: InputDecoration(
@@ -142,7 +142,7 @@ class SignupState extends State<Signup> {
                             hintText: 'Enter your password',
                             prefixIcon: Icon(Icons.lock_outline_rounded),
                             border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(25.0),
+                              borderRadius: BorderRadius.circular(20.0),
                             ),
                           ),
                           keyboardType: TextInputType.text,
@@ -152,7 +152,7 @@ class SignupState extends State<Signup> {
                         ),
                       ),
                       Container(
-                        margin: EdgeInsets.only(left:15.0, right:15.0,top:5, bottom:5 ),
+                        margin: EdgeInsets.only(left:15.0, right:15.0,top:5, bottom:15 ),
                         child: TextFormField(
                           obscureText: true,
                           decoration: InputDecoration(
@@ -160,7 +160,7 @@ class SignupState extends State<Signup> {
                             hintText: 'Enter confirm password',
                             prefixIcon: Icon(Icons.lock_outline_rounded),
                             border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(25.0),
+                              borderRadius: BorderRadius.circular(20.0),
                             ),
                           ),
                           keyboardType: TextInputType.text,
@@ -169,89 +169,9 @@ class SignupState extends State<Signup> {
                           },
                         ),
                       ),
-                      Expanded(
-                        child: Container(
-                            margin: EdgeInsets.only(left: 5.0),
-                            child:Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Checkbox(
-                                    value: isChecked,
-                                    onChanged: (bool? value) {
-                                      setState(() {
-                                        isChecked = value!;
-                                      });
-                                    },
-                                  ),
-                                  RichText(
-                                    text: TextSpan(
-                                      text: 'I agree to the Be My Voice ',
-                                      style: TextStyle(
-                                        fontSize: 15,
-                                        color: Color(0xFF717784),
-                                      ),
-                                    ),
-                                  ),
-                                  RichText(
-                                    text: TextSpan(
-                                        text: 'Terms of Service ',
-                                        style: TextStyle(
-                                          fontSize: 15,
-                                          color: Color(0xFF147B72),
 
-                                        ),
-                                        recognizer: TapGestureRecognizer()
-                                          ..onTap = () {
-                                            /*Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) => const OnboardingFour()),
-                                      );*/
-                                          }),
-                                  ),
-                                ]
-                            )
-                        ),
-                      ),
-                      Expanded(
-                        child: Container(
-                          margin: EdgeInsets.only(left: 5.0),
-                          child:Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                RichText(
-                                  text: TextSpan(
-                                    text: 'and ',
-                                    style: TextStyle(
-                                      fontSize: 15,
-                                      color: Color(0xFF717784),
-                                    ),
-                                  ),
-
-                                ),
-                                RichText(
-                                  text: TextSpan(
-                                      text: 'Privacy Policy',
-                                      style: TextStyle(
-                                        fontSize: 15,
-                                        color: Color(0xFF147B72),
-
-                                      ),
-                                      recognizer: TapGestureRecognizer()
-                                        ..onTap = () {
-                                          /*Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) => const OnboardingFour()),
-                                      );*/
-                                        }),
-                                ),
-                              ]
-                          )
-                        ),
-                      ),
                       Container(
-                        height:40,
+                        height:70,
                       ),
                       Center(
                         child: ElevatedButton(
@@ -272,10 +192,10 @@ class SignupState extends State<Signup> {
                             ),
                           ),
                           onPressed: () {
-                            /*Navigator.push(
+                            Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) => Login()),
-                            ); */
+                              MaterialPageRoute(builder: (context) => SignupFinish()),
+                            );
                           },
                         ),
                       ),
