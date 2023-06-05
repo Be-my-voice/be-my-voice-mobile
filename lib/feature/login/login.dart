@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../splash-screen/onboarding_four.dart';
 import '../signup/signup.dart';
-import 'package:google_fonts/google_fonts.dart';
+import '../reset-password/reset_password_email.dart';
 
 class Login extends StatefulWidget {
   createState() {
@@ -120,11 +121,11 @@ class LoginState extends State<Login> {
                                 ),
                                 recognizer: TapGestureRecognizer()
                                   ..onTap = () {
-                                    /*Navigator.push(
+                                    Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => const OnboardingFour()),
-                                      ); */
+                                          builder: (context) => ResetPasswordEmail()),
+                                      );
                                     }
                                   ),
                           ),
