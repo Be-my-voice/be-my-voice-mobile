@@ -124,7 +124,9 @@ class OnboardingOne extends StatelessWidget {
                             )
                           ),
 
-                        ])),
+                        ]
+                        )
+                ),
               ],
             )
         )

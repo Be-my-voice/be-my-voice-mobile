@@ -6,6 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import '../splash-screen/onboarding_four.dart';
 import '../signup/signup.dart';
 import '../reset-password/reset_password_email.dart';
+import '../home-screens/home.dart';
 
 class Login extends StatefulWidget {
   createState() {
@@ -147,10 +148,10 @@ class LoginState extends State<Login> {
                             ),
                           ),
                           onPressed: () {
-                            /*Navigator.push(
+                            Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) => Login()),
-                            ); */
+                              MaterialPageRoute(builder: (context) => Home()),
+                            );
                           },
                         ),
                       ),
