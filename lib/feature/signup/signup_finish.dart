@@ -239,8 +239,7 @@ class SignupFinishState extends State<SignupFinish> {
                             shape: MaterialStateProperty.all<
                                 RoundedRectangleBorder>(
                               RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(
-                                    25),
+                                borderRadius: BorderRadius.circular(25),
                               ),
                             ),
                           ),

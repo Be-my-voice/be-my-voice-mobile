@@ -3,6 +3,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/services.dart';
 //import 'package:charts_flutter/flutter.dart' as charts;
+import 'saved_translations.dart';
 
 
 /*class GraphData {
@@ -324,10 +325,10 @@ class HomeState extends State<Home> {
                                 ),
                               ),
                               onPressed: () {
-                                /*Navigator.push(
+                                Navigator.push(
                                   context,
-                                  MaterialPageRoute(builder: (context) => Home()),
-                                ); */
+                                  MaterialPageRoute(builder: (context) => SavedTranslations()),
+                                );
                               },
                             ),
                           ),
