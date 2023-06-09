@@ -13,8 +13,6 @@ class SavedTranslations extends StatefulWidget {
 class SavedTranslationsState extends State<SavedTranslations> {
 
   int _selectedIndex = 0;
-  bool _isMenuOpen = false;
-
   static List<Widget> _screens = [
     /*Screen1(),
     Screen2(),
@@ -52,24 +50,14 @@ class SavedTranslationsState extends State<SavedTranslations> {
       ),
       home: Scaffold(
         backgroundColor: Color(0xFFFFFFFF),
+
         appBar: AppBar(
           centerTitle: true,
           elevation: 0,
+          iconTheme: IconThemeData(color: Color(0xFF147B72), size: 30.0),
           backgroundColor: Color(0xFFFFFFFF),
           title: Row(
             children: [
-              GestureDetector(
-                onTap: () {
-                  setState(() {
-                    _isMenuOpen = !_isMenuOpen;
-                  });
-                },
-                child: Icon(
-                  Icons.dehaze_rounded, // The icon to display
-                  color: Color(0xFF147B72), // Color of the icon
-                  size: 30.0, // Size of the icon
-                ),
-              ),
               Expanded(
                   child: Container(
                     margin: EdgeInsets.only(left: 5.0, right: 20.0),
@@ -80,31 +68,39 @@ class SavedTranslationsState extends State<SavedTranslations> {
             ],
           ),
         ),
-        drawer: _isMenuOpen ? Drawer(
-          child: Column(
+        drawer: Drawer(
+          child: ListView(
+            // Important: Remove any padding from the ListView.
+            padding: EdgeInsets.zero,
             children: [
-              DrawerHeader(
+              const DrawerHeader(
                 decoration: BoxDecoration(
                   color: Colors.blue,
                 ),
-                child: Text('Menu Header'),
+                child: Text('Drawer Header'),
               ),
               ListTile(
-                title: Text('Menu Item 1'),
+                title: const Text('Item 1'),
                 onTap: () {
-                  // Handle menu item 1 tap
+                  // Update the state of the app
+                  // ...
+                  // Then close the drawer
+                  Navigator.pop(context);
                 },
               ),
               ListTile(
-                title: Text('Menu Item 2'),
+                title: const Text('Item 2'),
                 onTap: () {
-                  // Handle menu item 2 tap
+                  // Update the state of the app
+                  // ...
+                  // Then close the drawer
+                  Navigator.pop(context);
                 },
               ),
-              // Add more menu items as needed
             ],
           ),
-        ) : null,
+        ),
+
 
         body: Padding(
             padding: EdgeInsets.all(5.0),
@@ -229,30 +225,30 @@ class SavedTranslationsState extends State<SavedTranslations> {
                                               ),
                                               Expanded(
                                                 child: Row(
-                                                  children: [
-                                                    RichText(
-                                                      text: TextSpan(
-                                                        text:'29.05.2023 (Monday)',
-                                                        style: TextStyle(
-                                                          fontWeight: FontWeight.bold,
-                                                          fontSize: 10,
-                                                          color: Color(0xFF000000),
+                                                    children: [
+                                                      RichText(
+                                                        text: TextSpan(
+                                                          text:'29.05.2023 (Monday)',
+                                                          style: TextStyle(
+                                                            fontWeight: FontWeight.bold,
+                                                            fontSize: 10,
+                                                            color: Color(0xFF000000),
+                                                          ),
                                                         ),
                                                       ),
-                                                    ),
-                                                    SizedBox(width: middleWidth),
-                                                    RichText(
-                                                      text: TextSpan(
+                                                      SizedBox(width: middleWidth),
+                                                      RichText(
+                                                        text: TextSpan(
 
-                                                        text:'07.30PM',
-                                                        style: TextStyle(
-                                                          fontWeight: FontWeight.bold,
-                                                          fontSize: 10,
-                                                          color: Color(0xFF000000),
+                                                          text:'07.30PM',
+                                                          style: TextStyle(
+                                                            fontWeight: FontWeight.bold,
+                                                            fontSize: 10,
+                                                            color: Color(0xFF000000),
+                                                          ),
                                                         ),
                                                       ),
-                                                    ),
-                                                  ]
+                                                    ]
                                                 ),
                                               ),
                                             ]
@@ -263,53 +259,53 @@ class SavedTranslationsState extends State<SavedTranslations> {
                                   },
                                 );
                               },
-                                child: Container(
-                                  margin: EdgeInsets.only(top:5.0, bottom: 5.0),
-                                  decoration: BoxDecoration(
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: Colors.grey.withOpacity(0.5),
-                                        spreadRadius: 1,
-                                        blurRadius: 2,
-                                        offset: Offset(0, 6), // Offset of the shadow
-                                      ),
-                                    ],
-                                    borderRadius: BorderRadius.circular(10.0),
-                                    color: Color(0xFFFFFFFF),
-                                  ),
-                                  padding: EdgeInsets.all(15.0),
-                                  child: Column(
-                                      mainAxisAlignment: MainAxisAlignment.start,
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: [
-                                        RichText(
-                                          text: TextSpan(
-                                            text:'Good morning! I am from Colombo.',
-                                            style: TextStyle(
-                                              fontSize: 15,
-                                              color: Color(0xFF000000),
-                                            ),
-                                          ),
-                                        ),
-                                        Container(
-                                          height: 5,
-                                        ),
-                                        Container(
-                                          alignment: Alignment.centerRight,
-                                          child: RichText(
-                                            text: TextSpan(
-                                              text:'07.30PM',
-                                              style: TextStyle(
-                                                fontSize: 12,
-                                                color: Color(0xFF000000),
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                            ),
-                                          ),
-                                        )
-                                      ]
-                                  ),
+                              child: Container(
+                                margin: EdgeInsets.only(top:5.0, bottom: 5.0),
+                                decoration: BoxDecoration(
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.grey.withOpacity(0.5),
+                                      spreadRadius: 1,
+                                      blurRadius: 2,
+                                      offset: Offset(0, 6), // Offset of the shadow
+                                    ),
+                                  ],
+                                  borderRadius: BorderRadius.circular(10.0),
+                                  color: Color(0xFFFFFFFF),
                                 ),
+                                padding: EdgeInsets.all(15.0),
+                                child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      RichText(
+                                        text: TextSpan(
+                                          text:'Good morning! I am from Colombo.',
+                                          style: TextStyle(
+                                            fontSize: 15,
+                                            color: Color(0xFF000000),
+                                          ),
+                                        ),
+                                      ),
+                                      Container(
+                                        height: 5,
+                                      ),
+                                      Container(
+                                        alignment: Alignment.centerRight,
+                                        child: RichText(
+                                          text: TextSpan(
+                                            text:'07.30PM',
+                                            style: TextStyle(
+                                              fontSize: 12,
+                                              color: Color(0xFF000000),
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                        ),
+                                      )
+                                    ]
+                                ),
+                              ),
 
                             ),
 
