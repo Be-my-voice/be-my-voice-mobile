@@ -317,7 +317,62 @@ class HomeState extends State<Home> {
                       ),
                     ),
 
-                    //First box to show recent translations
+                    //First box to open camera
+                    Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10.0),
+                          color: Color(0xFFE8F3F1),
+                        ),
+                        padding: EdgeInsets.all(20.0),
+                        margin: EdgeInsets.symmetric(vertical: 16.0, horizontal: 20.0),
+
+                        child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              RichText(
+                                text: TextSpan(
+                                  text:
+                                  'Want to communicate in sign language?',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 16,
+                                    color: Color(0xFF147B72),
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                height: 10,
+                              ),
+                              Container(
+                                alignment: Alignment.centerRight,
+                                margin: EdgeInsets.only(top: 15.0),
+                                child: ElevatedButton(
+                                  child: Text('Start session'),
+                                  style: ButtonStyle(
+                                    fixedSize: MaterialStateProperty.all(Size(120, 40)),
+                                    backgroundColor: MaterialStateProperty.all<Color>(Color(0xFF147B72)),
+                                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                                      RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(20), // Set border radius
+                                      ),
+                                    ),
+                                  ),
+                                  onPressed: () {
+                                    /*Navigator.push(
+                                      context,
+                                      MaterialPageRoute(builder: (context) => SavedTranslations()),
+                                    ); */
+                                  },
+                                ),
+                              ),
+
+
+                            ]
+                        )
+                    ),
+
+                    //Second box to show recent translations
                     Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10.0),
@@ -336,7 +391,7 @@ class HomeState extends State<Home> {
                               'Saved translations',
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
-                                fontSize: 20,
+                                fontSize: 16,
                                 color: Color(0xFF147B72),
                               ),
                             ),
@@ -392,7 +447,7 @@ class HomeState extends State<Home> {
                                     text: TextSpan(
                                       text:'07.30PM',
                                       style: TextStyle(
-                                        fontSize: 12,
+                                        fontSize: 10,
                                         color: Color(0xFF000000),
                                         fontWeight: FontWeight.bold,
                                       ),
@@ -439,7 +494,7 @@ class HomeState extends State<Home> {
                                           text: TextSpan(
                                             text:'09.32PM',
                                             style: TextStyle(
-                                              fontSize: 12,
+                                              fontSize: 10,
                                               color: Color(0xFF000000),
                                               fontWeight: FontWeight.bold,
                                             ),
@@ -501,7 +556,7 @@ class HomeState extends State<Home> {
                                           text: TextSpan(
                                             text:'06.40AM',
                                             style: TextStyle(
-                                              fontSize: 12,
+                                              fontSize: 10,
                                               color: Color(0xFF000000),
                                               fontWeight: FontWeight.bold,
                                             ),
@@ -540,7 +595,7 @@ class HomeState extends State<Home> {
                         )
                     ),
 
-                    //Second box to show learning progress
+                    //Third box to show learning progress
                     Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10.0),
@@ -557,7 +612,7 @@ class HomeState extends State<Home> {
                             text:'Learning progress',
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
-                                fontSize: 20,
+                                fontSize: 16,
                                 color: Color(0xFF147B72),
                               ),
                             ),

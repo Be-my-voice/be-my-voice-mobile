@@ -70,33 +70,212 @@ class SavedTranslationsState extends State<SavedTranslations> {
         ),
         drawer: Drawer(
           child: ListView(
-            // Important: Remove any padding from the ListView.
             padding: EdgeInsets.zero,
             children: [
-              const DrawerHeader(
+              DrawerHeader(
                 decoration: BoxDecoration(
-                  color: Colors.blue,
+                  color: Color(0xFFF8F8F8),
                 ),
-                child: Text('Drawer Header'),
+                child: Row(
+                  children: [
+                    SizedBox(width: 10.0),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                      child: Icon(
+                        Icons.arrow_back_ios_new_rounded, // The icon to display
+                        color: Color(0xFF147B72), // Color of the icon
+                        size: 20.0, // Size of the icon
+                      ),
+                    ),
+                    SizedBox(width: 10.0),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                      child: RichText(
+                        text: TextSpan(
+                          text: 'Back',
+                          style: TextStyle(
+                            fontSize: 18,
+                            color: Color(0xFF147B72),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
+              Center(
+                child: Column(
+                  children: [
+                    Stack(
+                        alignment: Alignment.center,
+                        children: [
+                          Container(
+                            width: 80,
+                            height: 80,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: Color(0xFFcccccc),
+                            ),
+                          ),
+                          Icon(
+                            Icons.person, // The icon to display
+                            color: Color(0xFF147B72), // Color of the icon
+                            size: 70.0,
+                          ),
+                        ]
+                    ),
+                    SizedBox(height: 10.0),
+                    RichText(
+                      text: TextSpan(
+                        text: 'Anirudh Ravichander',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                          color: Color(0xFF000000),
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 8.0),
+                    RichText(
+                      text: TextSpan(
+                        text: 'anirudhravi@gmail.com',
+                        style: TextStyle(
+                          fontSize: 15,
+                          color: Color(0xFF000000),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+
+              ),
+              SizedBox(height: 30.0),
               ListTile(
-                title: const Text('Item 1'),
+                title: Row(
+                  children: [
+                    SizedBox(width: 30.0),
+                    Icon(
+                      Icons.person, // The icon to display
+                      color: Color(0xFF147B72), // Color of the icon
+                      size: 30.0,
+                    ),
+                    SizedBox(width: 10.0),
+                    RichText(
+                      text: TextSpan(
+                        text: 'Profile',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                          color: Color(0xFF147B72),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
                 onTap: () {
-                  // Update the state of the app
-                  // ...
-                  // Then close the drawer
+
                   Navigator.pop(context);
                 },
               ),
               ListTile(
-                title: const Text('Item 2'),
+                title: Row(
+                  children: [
+                    SizedBox(width: 30.0),
+                    Icon(
+                      Icons.help, // The icon to display
+                      color: Color(0xFF147B72), // Color of the icon
+                      size: 30.0,
+                    ),
+                    SizedBox(width: 10.0),
+                    RichText(
+                      text: TextSpan(
+                        text: 'Help',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                          color: Color(0xFF147B72),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
                 onTap: () {
-                  // Update the state of the app
-                  // ...
-                  // Then close the drawer
+
                   Navigator.pop(context);
                 },
               ),
+              ListTile(
+                title: Row(
+                  children: [
+                    SizedBox(width: 30.0),
+                    Icon(
+                      Icons.settings, // The icon to display
+                      color: Color(0xFF147B72), // Color of the icon
+                      size: 30.0,
+                    ),
+                    SizedBox(width: 10.0),
+                    RichText(
+                      text: TextSpan(
+                        text: 'Settings',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                          color: Color(0xFF147B72),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                onTap: () {
+
+                  Navigator.pop(context);
+                },
+              ),
+              ListTile(
+                title: Row(
+                  children: [
+                    SizedBox(width: 20.0),
+                    Container(
+                      alignment: Alignment.centerRight,
+                      margin: EdgeInsets.only(top: 15.0),
+                      child: ElevatedButton(
+                        child: Row(
+                          children: [
+                            Icon(
+                              Icons.logout_rounded, // The icon to display
+                              color: Color(0xFFFFFFFF), // Color of the icon
+                              size: 30.0,
+                            ),
+                            Text('Log out',
+                                style: TextStyle(fontWeight: FontWeight.bold)),
+                          ],
+                        ),
+                        style: ButtonStyle(
+                          fixedSize: MaterialStateProperty.all(Size(220, 50)),
+                          backgroundColor: MaterialStateProperty.all<Color>(Color(0xFF147B72)),
+                          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                            RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10), // Set border radius
+                            ),
+                          ),
+                        ),
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+                onTap: () {
+
+                  Navigator.pop(context);
+                },
+              ),
+              SizedBox(height: 30.0),
             ],
           ),
         ),
@@ -160,7 +339,7 @@ class SavedTranslationsState extends State<SavedTranslations> {
                                 'Saved translations',
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
-                                  fontSize: 20,
+                                  fontSize: 16,
                                   color: Color(0xFF147B72),
                                 ),
                               ),
@@ -232,7 +411,7 @@ class SavedTranslationsState extends State<SavedTranslations> {
                                                           style: TextStyle(
                                                             fontWeight: FontWeight.bold,
                                                             fontSize: 10,
-                                                            color: Color(0xFF000000),
+                                                            color: Color(0xFF147B72),
                                                           ),
                                                         ),
                                                       ),
@@ -244,7 +423,7 @@ class SavedTranslationsState extends State<SavedTranslations> {
                                                           style: TextStyle(
                                                             fontWeight: FontWeight.bold,
                                                             fontSize: 10,
-                                                            color: Color(0xFF000000),
+                                                            color: Color(0xFF147B72),
                                                           ),
                                                         ),
                                                       ),
@@ -296,7 +475,7 @@ class SavedTranslationsState extends State<SavedTranslations> {
                                           text: TextSpan(
                                             text:'07.30PM',
                                             style: TextStyle(
-                                              fontSize: 12,
+                                              fontSize: 10,
                                               color: Color(0xFF000000),
                                               fontWeight: FontWeight.bold,
                                             ),
@@ -346,7 +525,7 @@ class SavedTranslationsState extends State<SavedTranslations> {
                                         text: TextSpan(
                                           text:'09.32PM',
                                           style: TextStyle(
-                                            fontSize: 12,
+                                            fontSize: 10,
                                             color: Color(0xFF000000),
                                             fontWeight: FontWeight.bold,
                                           ),
@@ -408,7 +587,7 @@ class SavedTranslationsState extends State<SavedTranslations> {
                                         text: TextSpan(
                                           text:'06.40AM',
                                           style: TextStyle(
-                                            fontSize: 12,
+                                            fontSize: 10,
                                             color: Color(0xFF000000),
                                             fontWeight: FontWeight.bold,
                                           ),
@@ -470,7 +649,7 @@ class SavedTranslationsState extends State<SavedTranslations> {
                                         text: TextSpan(
                                           text:'06.40AM',
                                           style: TextStyle(
-                                            fontSize: 12,
+                                            fontSize: 10,
                                             color: Color(0xFF000000),
                                             fontWeight: FontWeight.bold,
                                           ),
@@ -517,7 +696,7 @@ class SavedTranslationsState extends State<SavedTranslations> {
                                         text: TextSpan(
                                           text:'06.42AM',
                                           style: TextStyle(
-                                            fontSize: 12,
+                                            fontSize: 10,
                                             color: Color(0xFF000000),
                                             fontWeight: FontWeight.bold,
                                           ),
