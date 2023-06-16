@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter/services.dart';
 //import 'package:charts_flutter/flutter.dart' as charts;
 import 'saved_translations.dart';
+import '../learn/list_of_lessons.dart';
 
 
 /*class GraphData {
@@ -617,6 +618,30 @@ class HomeState extends State<Home> {
                               ),
                             ),
                           ),
+
+                          Container(
+                            alignment: Alignment.centerRight,
+                            margin: EdgeInsets.only(top: 15.0),
+                            child: ElevatedButton(
+                              child: Text('Learn'),
+                              style: ButtonStyle(
+                                fixedSize: MaterialStateProperty.all(Size(120, 40)),
+                                backgroundColor: MaterialStateProperty.all<Color>(Color(0xFF147B72)),
+                                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(20), // Set border radius
+                                  ),
+                                ),
+                              ),
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => ListOfLessons()),
+                                );
+                              },
+                            ),
+                          ),
+
                           /*charts.PieChart(
                             [
                               charts.Series<GraphData, String>(
@@ -637,6 +662,7 @@ class HomeState extends State<Home> {
                         ]
                       ),
                     ),
+
 
                   ]
               )
