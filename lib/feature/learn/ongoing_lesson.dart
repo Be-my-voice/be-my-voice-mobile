@@ -2,16 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/services.dart';
-import 'ongoing_lesson.dart';
 
 
-class ListOfSubLessons extends StatefulWidget {
+class OngoingLesson extends StatefulWidget {
   createState() {
-    return ListOfSubLessonsState();
+    return OngoingLessonState();
   }
 }
 
-class ListOfSubLessonsState extends State<ListOfSubLessons> {
+class OngoingLessonState extends State<OngoingLesson> {
 
   int _selectedIndex = 0;
   static List<Widget> _screens = [
@@ -350,6 +349,8 @@ class ListOfSubLessonsState extends State<ListOfSubLessons> {
                       margin: EdgeInsets.symmetric(vertical: 16.0, horizontal: 20.0),
 
                       child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
                             Container(
                               height: 10,
@@ -359,10 +360,7 @@ class ListOfSubLessonsState extends State<ListOfSubLessons> {
                               children: [
                                 GestureDetector(
                                   onTap: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(builder: (context) => OngoingLesson()),
-                                    );
+
                                   },
                                   child: Container(
                                     margin: EdgeInsets.only(top:5.0, bottom: 5.0),
@@ -375,7 +373,7 @@ class ListOfSubLessonsState extends State<ListOfSubLessons> {
                                           offset: Offset(0, 6), // Offset of the shadow
                                         ),
                                       ],
-                                      borderRadius: BorderRadius.circular(6.0),
+                                      borderRadius: BorderRadius.circular(10.0),
                                       color: Color(0xFFFFFFFF),
                                       border: Border.all(
                                         color: Color(0xFF147B72), // Replace with your desired border color
@@ -385,9 +383,32 @@ class ListOfSubLessonsState extends State<ListOfSubLessons> {
                                     padding: EdgeInsets.only(bottom: 15.0),
                                     child: Column(
                                         children: [
-                                          Image.asset('assets/image/splash-screen/sign_lang_sample.png', width: 140.0, ),
+                                          Stack(
+                                            children: [
+                                              Image.asset('assets/image/splash-screen/sign_lang_sample.png', width: 260.0) ,
+                                              Positioned(
+                                                top: 16.0, // Adjust the top position as needed
+                                                right: 16.0, // Adjust the left position as needed
+                                                child: Row(
+                                                  children: [
+                                                    Image.asset('assets/image/splash-screen/camera.png', width: 15.0, ),
+                                                    RichText(
+                                                      text: TextSpan(
+                                                        text:' 00.10',
+                                                        style: TextStyle(
+                                                          fontSize: 10,
+                                                          color: Color(0xFF000000),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                          //Image.asset('assets/image/splash-screen/sign_lang_sample.png', width: 260.0, ),
                                           Container(
-                                            height: 5,
+                                            height: 15,
                                           ),
                                           Container(
                                             alignment: Alignment.center,
@@ -395,7 +416,7 @@ class ListOfSubLessonsState extends State<ListOfSubLessons> {
                                               text: TextSpan(
                                                 text:'Monday',
                                                 style: TextStyle(
-                                                  fontSize: 15,
+                                                  fontSize: 18,
                                                   color: Color(0xFF000000),
                                                 ),
                                               ),
@@ -403,89 +424,6 @@ class ListOfSubLessonsState extends State<ListOfSubLessons> {
                                           ),
                                           Container(
                                             height: 5,
-                                          ),
-                                          Container(
-                                            width:120,
-                                            child: Row(
-                                              children: [
-                                                Image.asset('assets/image/splash-screen/camera.png', width: 10.0, ),
-                                                RichText(
-                                                  text: TextSpan(
-                                                    text:' 00.10',
-                                                    style: TextStyle(
-                                                      fontSize: 8,
-                                                      color: Color(0xFF000000),
-                                                    ),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ]
-                                    ),
-                                  ),
-                                ),
-                                Container(width: 10.0),
-                                GestureDetector(
-                                  onTap: () {
-
-                                  },
-                                  child: Container(
-                                    margin: EdgeInsets.only(top:5.0, bottom: 5.0),
-                                    decoration: BoxDecoration(
-                                      boxShadow: [
-                                        BoxShadow(
-                                          color: Colors.grey.withOpacity(0.5),
-                                          spreadRadius: 1,
-                                          blurRadius: 2,
-                                          offset: Offset(0, 6), // Offset of the shadow
-                                        ),
-                                      ],
-                                      borderRadius: BorderRadius.circular(6.0),
-                                      color: Color(0xFFFFFFFF),
-                                      border: Border.all(
-                                        color: Color(0xFF147B72), // Replace with your desired border color
-                                        width: 1.0, // Replace with your desired border width
-                                      ),
-                                    ),
-                                    padding: EdgeInsets.only(bottom: 15.0),
-                                    child: Column(
-                                        children: [
-                                          Image.asset('assets/image/splash-screen/sign_lang_sample.png', width: 140.0, ),
-                                          Container(
-                                            height: 5,
-                                          ),
-                                          Container(
-                                            alignment: Alignment.center,
-                                            child: RichText(
-                                              text: TextSpan(
-                                                text:'Tuesday',
-                                                style: TextStyle(
-                                                  fontSize: 15,
-                                                  color: Color(0xFF000000),
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                          Container(
-                                            height: 5,
-                                          ),
-                                          Container(
-                                            width:120,
-                                            child: Row(
-                                              children: [
-                                                Image.asset('assets/image/splash-screen/camera.png', width: 10.0, ),
-                                                RichText(
-                                                  text: TextSpan(
-                                                    text:' 00.10',
-                                                    style: TextStyle(
-                                                      fontSize: 8,
-                                                      color: Color(0xFF000000),
-                                                    ),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
                                           ),
                                         ]
                                     ),
@@ -495,148 +433,104 @@ class ListOfSubLessonsState extends State<ListOfSubLessons> {
                             ),
 
                             Container(
-                              height: 10,
+                              height: 15,
+                            ),
+                            Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  RichText(
+                                    text: TextSpan(
+                                      text: '1 out of 07',
+                                      style: TextStyle(
+                                        fontSize: 12,
+                                        color: Color(0xFF147B72),
+                                      ),
+                                    ),
+                                  ),
+
+                                ]
+                            ),
+                            Container(
+                              height: 15,
                             ),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                GestureDetector(
-                                  onTap: () {
-
-                                  },
-                                  child: Container(
-                                    margin: EdgeInsets.only(top:5.0, bottom: 5.0),
-                                    decoration: BoxDecoration(
-                                      boxShadow: [
-                                        BoxShadow(
-                                          color: Colors.grey.withOpacity(0.5),
-                                          spreadRadius: 1,
-                                          blurRadius: 2,
-                                          offset: Offset(0, 6), // Offset of the shadow
+                                ElevatedButton(
+                                  child: Row(
+                                    children: [
+                                      Icon(
+                                        Icons.arrow_back_rounded, // The icon to display
+                                        color: Color(0xFF147B72), // Color of the icon
+                                        size: 20.0,
+                                      ),
+                                      Text(
+                                        'Previous',
+                                        style: TextStyle(
+                                          color: Color(0xFF147B72),
+                                          fontWeight: FontWeight.bold, // Set the text color
                                         ),
-                                      ],
-                                      borderRadius: BorderRadius.circular(6.0),
-                                      color: Color(0xFFFFFFFF),
-                                      border: Border.all(
-                                        color: Color(0xFF147B72), // Replace with your desired border color
-                                        width: 1.0, // Replace with your desired border width
+                                      ),
+                                    ],
+                                  ),
+                                  style: ButtonStyle(
+                                    fixedSize: MaterialStateProperty.all(Size(110, 40)),
+                                    backgroundColor: MaterialStateProperty.all<Color>(
+                                        Color(0xFFFFFFFF)),
+                                    shape: MaterialStateProperty.all<
+                                        RoundedRectangleBorder>(
+                                      RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(20),
+                                        side: BorderSide(
+                                            color: Color(0xFF147B72), width: 1.0),
                                       ),
                                     ),
-                                    padding: EdgeInsets.only(bottom: 15.0),
-                                    child: Column(
-                                        children: [
-                                          Image.asset('assets/image/splash-screen/sign_lang_sample.png', width: 140.0, ),
-                                          Container(
-                                            height: 5,
-                                          ),
-                                          Container(
-                                            alignment: Alignment.center,
-                                            child: RichText(
-                                              text: TextSpan(
-                                                text:'Wednesday',
-                                                style: TextStyle(
-                                                  fontSize: 15,
-                                                  color: Color(0xFF000000),
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                          Container(
-                                            height: 5,
-                                          ),
-                                          Container(
-                                            width:120,
-                                            child: Row(
-                                              children: [
-                                                Image.asset('assets/image/splash-screen/camera.png', width: 10.0, ),
-                                                RichText(
-                                                  text: TextSpan(
-                                                    text:' 00.10',
-                                                    style: TextStyle(
-                                                      fontSize: 8,
-                                                      color: Color(0xFF000000),
-                                                    ),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ]
-                                    ),
                                   ),
+                                  onPressed: () {
+                                    /*Navigator.push(context,
+                                     MaterialPageRoute(builder: (context) => Signup()),
+                                      ); */
+                                  },
                                 ),
-                                Container(width: 10.0),
-                                GestureDetector(
-                                  onTap: () {
-
-                                  },
-                                  child: Container(
-                                    margin: EdgeInsets.only(top:5.0, bottom: 5.0),
-                                    decoration: BoxDecoration(
-                                      boxShadow: [
-                                        BoxShadow(
-                                          color: Colors.grey.withOpacity(0.5),
-                                          spreadRadius: 1,
-                                          blurRadius: 2,
-                                          offset: Offset(0, 6), // Offset of the shadow
-                                        ),
-                                      ],
-                                      borderRadius: BorderRadius.circular(6.0),
-                                      color: Color(0xFFFFFFFF),
-                                      border: Border.all(
-                                        color: Color(0xFF147B72), // Replace with your desired border color
-                                        width: 1.0, // Replace with your desired border width
+                                Container(
+                                  width:50,
+                                ),
+                                ElevatedButton(
+                                  child: Row(
+                                    children: [
+                                      Container(width:5),
+                                      Text('Next'),
+                                      Container(width:5),
+                                      Icon(
+                                        Icons.arrow_forward_rounded, // The icon to display
+                                        color: Color(0xFFFFFFFF), // Color of the icon
+                                        size: 20.0,
+                                      ),
+                                    ],
+                                  ),
+                                  style: ButtonStyle(
+                                    fixedSize: MaterialStateProperty.all(Size(100, 40)),
+                                    backgroundColor: MaterialStateProperty.all<Color>(
+                                        Color(0xFF147B72)),
+                                    shape: MaterialStateProperty.all<
+                                        RoundedRectangleBorder>(
+                                      RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(20),
                                       ),
                                     ),
-                                    padding: EdgeInsets.only(bottom: 15.0),
-                                    child: Column(
-                                        children: [
-                                          Image.asset('assets/image/splash-screen/sign_lang_sample.png', width: 140.0, ),
-                                          Container(
-                                            height: 5,
-                                          ),
-                                          Container(
-                                            alignment: Alignment.center,
-                                            child: RichText(
-                                              text: TextSpan(
-                                                text:'Thursday',
-                                                style: TextStyle(
-                                                  fontSize: 15,
-                                                  color: Color(0xFF000000),
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                          Container(
-                                            height: 5,
-                                          ),
-                                          Container(
-                                            width:120,
-                                            child: Row(
-                                              children: [
-                                                Image.asset('assets/image/splash-screen/camera.png', width: 10.0, ),
-                                                RichText(
-                                                  text: TextSpan(
-                                                    text:' 00.10',
-                                                    style: TextStyle(
-                                                      fontSize: 8,
-                                                      color: Color(0xFF000000),
-                                                    ),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ]
-                                    ),
                                   ),
+                                  onPressed: () {
+                                    /*Navigator.push(context,
+                                     MaterialPageRoute(builder: (context) => Login()),
+                                     ); */
+                                  },
                                 ),
                               ],
                             ),
-
                             Container(
-                              height: 10,
+                              height:15,
                             ),
+
                           ]
                       )
                   ),

@@ -2,17 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/services.dart';
-import 'list_of_quizzes.dart';
-import 'list_of_sub_lessons.dart';
+import 'list_of_lessons.dart';
+import 'ongoing_quiz.dart';
 
 
-class ListOfLessons extends StatefulWidget {
+class ListOfQuizzes extends StatefulWidget {
   createState() {
-    return ListOfLessonsState();
+    return ListOfQuizzesState();
   }
 }
 
-class ListOfLessonsState extends State<ListOfLessons> {
+class ListOfQuizzesState extends State<ListOfQuizzes> {
   final _formKey = GlobalKey<FormState>();
 
   int _selectedIndex = 0;
@@ -294,31 +294,8 @@ class ListOfLessonsState extends State<ListOfLessons> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       ElevatedButton(
-                        child: Text('Lessons'),
-                        style: ButtonStyle(
-                          fixedSize: MaterialStateProperty.all(Size(170, 50)),
-                          backgroundColor: MaterialStateProperty.all<Color>(
-                              Color(0xFF147B72)),
-                          shape: MaterialStateProperty.all<
-                              RoundedRectangleBorder>(
-                            RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(5),
-                            ),
-                          ),
-                        ),
-                        onPressed: () {
-                          /*Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => Login()),
-                          ); */
-                        },
-                      ),
-                      Container(
-                        width:10,
-                      ),
-                      ElevatedButton(
                         child: Text(
-                          'Quizzes',
+                          'Lessons',
                           style: TextStyle(
                             color: Color(0xFF147B72),
                             fontWeight: FontWeight.bold, // Set the text color
@@ -340,8 +317,31 @@ class ListOfLessonsState extends State<ListOfLessons> {
                         onPressed: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => ListOfQuizzes()),
+                            MaterialPageRoute(builder: (context) => ListOfLessons()),
                           );
+                        },
+                      ),
+                      Container(
+                        width:10,
+                      ),
+                      ElevatedButton(
+                        child: Text('Quizzes'),
+                        style: ButtonStyle(
+                          fixedSize: MaterialStateProperty.all(Size(170, 50)),
+                          backgroundColor: MaterialStateProperty.all<Color>(
+                              Color(0xFF147B72)),
+                          shape: MaterialStateProperty.all<
+                              RoundedRectangleBorder>(
+                            RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(5),
+                            ),
+                          ),
+                        ),
+                        onPressed: () {
+                          /*Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => Login()),
+                          ); */
                         },
                       ),
                     ],
@@ -364,7 +364,7 @@ class ListOfLessonsState extends State<ListOfLessons> {
                                 obscureText: true,
                                 decoration: InputDecoration(
                                   contentPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 5.0),
-                                  hintText: 'Search Lesson',
+                                  hintText: 'Search Quiz',
                                   prefixIcon: Icon(Icons.search_rounded),
                                   border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(25.0),
@@ -397,210 +397,243 @@ class ListOfLessonsState extends State<ListOfLessons> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
-                            GestureDetector(
-                              onTap: () {
-                                /*Navigator.push(
-                                  context,
-                                  MaterialPageRoute(builder: (context) => ListOfSubLessons()),
-                                ); */
-                              },
-                              child: Container(
-                                margin: EdgeInsets.only(top:5.0, bottom: 5.0),
-                                decoration: BoxDecoration(
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Colors.grey.withOpacity(0.5),
-                                      spreadRadius: 0.5,
-                                      blurRadius: 2,
-                                      offset: Offset(0, 6), // Offset of the shadow
-                                    ),
-                                  ],
-                                  borderRadius: BorderRadius.circular(10.0),
-                                  color: Color(0xFFFFFFFF),
-                                ),
-                                padding: EdgeInsets.all(15.0),
-                                child: Row(
+                            Container(
+                              margin: EdgeInsets.only(top:5.0, bottom: 5.0),
+                              decoration: BoxDecoration(
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.grey.withOpacity(0.5),
+                                    spreadRadius: 0.5,
+                                    blurRadius: 2,
+                                    offset: Offset(0, 6), // Offset of the shadow
+                                  ),
+                                ],
+                                borderRadius: BorderRadius.circular(10.0),
+                                color: Color(0xFFFFFFFF),
+                              ),
+                              padding: EdgeInsets.all(15.0),
+                              child: Row(
+                                children: [
+                                  Icon(
+                                    Icons.quiz_outlined, // The icon to display
+                                    color: Color(0xFF147B72), // Color of the icon
+                                    size: 35.0,
+                                  ),
+                                  SizedBox(
+                                    width:5,
+                                  ),
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
-                                      Icon(
-                                        Icons.photo_album_outlined, // The icon to display
-                                        color: Color(0xFF147B72), // Color of the icon
-                                        size: 35.0,
+                                      RichText(
+                                        text: TextSpan(
+                                          text:'Days of the Week',
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 14,
+                                            color: Color(0xFF147B72),
+                                          ),
+                                        ),
                                       ),
                                       SizedBox(
-                                        width:5,
+                                        height:5,
                                       ),
-                                      Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: [
-                                          RichText(
-                                            text: TextSpan(
-                                              text:'Introduction to Sign Language',
-                                              style: TextStyle(
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 14,
-                                                color: Color(0xFF147B72),
-                                              ),
-                                            ),
+                                      RichText(
+                                        text: TextSpan(
+                                          text:'15 questions',
+                                          style: TextStyle(
+                                            fontSize: 10,
+                                            color: Color(0xFF000000),
                                           ),
-                                          SizedBox(
-                                            height:5,
-                                          ),
-                                          RichText(
-                                            text: TextSpan(
-                                              text:'Completed 0 out of 12',
-                                              style: TextStyle(
-                                                fontSize: 10,
-                                                color: Color(0xFF000000),
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                      Spacer(),
-                                      Icon(
-                                        Icons.arrow_forward_ios_rounded, // The icon to display
-                                        color: Color(0xFF147B72), // Color of the icon
-                                        size: 25.0,
+                                        ),
                                       ),
                                     ],
-                                ),
+                                  ),
+                                  Spacer(),
+                                  ElevatedButton(
+                                    child: Text('Start',
+                                      style: TextStyle(
+                                        fontSize: 12.0, // Replace with your desired font size
+                                      ),
+                                    ),
+                                    style: ButtonStyle(
+                                      fixedSize: MaterialStateProperty.all(Size(95, 30)),
+                                      backgroundColor: MaterialStateProperty.all<Color>(
+                                          Color(0xFF147B72)),
+                                      shape: MaterialStateProperty.all<
+                                          RoundedRectangleBorder>(
+                                        RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(20),
+                                        ),
+                                      ),
+                                    ),
+                                    onPressed: () {
+                                      Navigator.push(context,
+                                        MaterialPageRoute(builder: (context) => OngoingQuiz()),
+                                      );
+                                    },
+                                  ),
+                                ],
                               ),
                             ),
 
-                            GestureDetector(
-                              onTap: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(builder: (context) => ListOfSubLessons()),
-                                );
-                              },
-                              child: Container(
-                                margin: EdgeInsets.only(top:5.0, bottom: 5.0),
-                                decoration: BoxDecoration(
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Colors.grey.withOpacity(0.5),
-                                      spreadRadius: 0.5,
-                                      blurRadius: 2,
-                                      offset: Offset(0, 6), // Offset of the shadow
-                                    ),
-                                  ],
-                                  borderRadius: BorderRadius.circular(10.0),
-                                  color: Color(0xFFFFFFFF),
-                                ),
-                                padding: EdgeInsets.all(15.0),
-                                child: Row(
-                                  children: [
-                                    Icon(
-                                      Icons.photo_album_outlined, // The icon to display
-                                      color: Color(0xFF147B72), // Color of the icon
-                                      size: 35.0,
-                                    ),
-                                    SizedBox(
-                                      width:10,
-                                    ),
-                                    Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: [
-                                        RichText(
-                                          text: TextSpan(
-                                            text:'Days of the Week',
-                                            style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 14,
-                                              color: Color(0xFF147B72),
-                                            ),
+                            Container(
+                              margin: EdgeInsets.only(top:5.0, bottom: 5.0),
+                              decoration: BoxDecoration(
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.grey.withOpacity(0.5),
+                                    spreadRadius: 0.5,
+                                    blurRadius: 2,
+                                    offset: Offset(0, 6), // Offset of the shadow
+                                  ),
+                                ],
+                                borderRadius: BorderRadius.circular(10.0),
+                                color: Color(0xFFFFFFFF),
+                              ),
+                              padding: EdgeInsets.all(15.0),
+                              child: Row(
+                                children: [
+                                  Icon(
+                                    Icons.quiz_outlined, // The icon to display
+                                    color: Color(0xFF147B72), // Color of the icon
+                                    size: 35.0,
+                                  ),
+                                  SizedBox(
+                                    width:10,
+                                  ),
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      RichText(
+                                        text: TextSpan(
+                                          text:'Months',
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 14,
+                                            color: Color(0xFF147B72),
                                           ),
                                         ),
-                                        SizedBox(
-                                          height:5,
-                                        ),
-                                        RichText(
-                                          text: TextSpan(
-                                            text:'Completed 0 out of 07',
-                                            style: TextStyle(
-                                              fontSize: 10,
-                                              color: Color(0xFF000000),
-                                            ),
+                                      ),
+                                      SizedBox(
+                                        height:5,
+                                      ),
+                                      RichText(
+                                        text: TextSpan(
+                                          text:'15 questions',
+                                          style: TextStyle(
+                                            fontSize: 10,
+                                            color: Color(0xFF000000),
                                           ),
                                         ),
-                                      ],
+                                      ),
+                                    ],
+                                  ),
+                                  Spacer(),
+                                  ElevatedButton(
+                                    child: Text('Start',
+                                      style: TextStyle(
+                                        fontSize: 12.0, // Replace with your desired font size
+                                      ),
                                     ),
-                                    Spacer(),
-                                    Icon(
-                                      Icons.arrow_forward_ios_rounded, // The icon to display
-                                      color: Color(0xFF147B72), // Color of the icon
-                                      size: 25.0,
+                                    style: ButtonStyle(
+                                      fixedSize: MaterialStateProperty.all(Size(95, 30)),
+                                      backgroundColor: MaterialStateProperty.all<Color>(
+                                          Color(0xFF147B72)),
+                                      shape: MaterialStateProperty.all<
+                                          RoundedRectangleBorder>(
+                                        RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(20),
+                                        ),
+                                      ),
                                     ),
-                                  ],
-                                ),
+                                    onPressed: () {
+                                      /*Navigator.push(context,
+                                        MaterialPageRoute(builder: (context) => Login()),
+                                        ); */
+                                    },
+                                  ),
+                                ],
                               ),
                             ),
 
-                            GestureDetector(
-                              onTap: () {
-
-                              },
-                              child: Container(
-                                margin: EdgeInsets.only(top:5.0, bottom: 5.0),
-                                decoration: BoxDecoration(
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Colors.grey.withOpacity(0.5),
-                                      spreadRadius: 0.5,
-                                      blurRadius: 2,
-                                      offset: Offset(0, 6), // Offset of the shadow
-                                    ),
-                                  ],
-                                  borderRadius: BorderRadius.circular(10.0),
-                                  color: Color(0xFFFFFFFF),
-                                ),
-                                padding: EdgeInsets.all(15.0),
-                                child: Row(
-                                  children: [
-                                    Icon(
-                                      Icons.photo_album_outlined, // The icon to display
-                                      color: Color(0xFF147B72), // Color of the icon
-                                      size: 35.0,
-                                    ),
-                                    SizedBox(
-                                      width:10,
-                                    ),
-                                    Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: [
-                                        RichText(
-                                          text: TextSpan(
-                                            text:'Basic Greetings',
-                                            style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 14,
-                                              color: Color(0xFF147B72),
-                                            ),
+                            Container(
+                              margin: EdgeInsets.only(top:5.0, bottom: 5.0),
+                              decoration: BoxDecoration(
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.grey.withOpacity(0.5),
+                                    spreadRadius: 0.5,
+                                    blurRadius: 2,
+                                    offset: Offset(0, 6), // Offset of the shadow
+                                  ),
+                                ],
+                                borderRadius: BorderRadius.circular(10.0),
+                                color: Color(0xFFFFFFFF),
+                              ),
+                              padding: EdgeInsets.all(15.0),
+                              child: Row(
+                                children: [
+                                  Icon(
+                                    Icons.quiz_outlined, // The icon to display
+                                    color: Color(0xFF147B72), // Color of the icon
+                                    size: 35.0,
+                                  ),
+                                  SizedBox(
+                                    width:10,
+                                  ),
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      RichText(
+                                        text: TextSpan(
+                                          text:'Basic Greetings',
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 14,
+                                            color: Color(0xFF147B72),
                                           ),
                                         ),
-                                        SizedBox(
-                                          height:5,
-                                        ),
-                                        RichText(
-                                          text: TextSpan(
-                                            text:'Completed 0 out of 06',
-                                            style: TextStyle(
-                                              fontSize: 10,
-                                              color: Color(0xFF000000),
-                                            ),
+                                      ),
+                                      SizedBox(
+                                        height:5,
+                                      ),
+                                      RichText(
+                                        text: TextSpan(
+                                          text:'15 questions',
+                                          style: TextStyle(
+                                            fontSize: 10,
+                                            color: Color(0xFF000000),
                                           ),
                                         ),
-                                      ],
+                                      ),
+                                    ],
+                                  ),
+                                  Spacer(),
+                                  ElevatedButton(
+                                    child: Text('Completed',
+                                      style: TextStyle(
+                                        fontSize: 12.0, // Replace with your desired font size
+                                      ),
                                     ),
-                                    Spacer(),
-                                    Icon(
-                                      Icons.arrow_forward_ios_rounded, // The icon to display
-                                      color: Color(0xFF147B72), // Color of the icon
-                                      size: 25.0,
+                                    style: ButtonStyle(
+                                      fixedSize: MaterialStateProperty.all(Size(95, 30)),
+                                      backgroundColor: MaterialStateProperty.all<Color>(
+                                          Color(0xFF656565)),
+                                      shape: MaterialStateProperty.all<
+                                          RoundedRectangleBorder>(
+                                        RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(20),
+                                        ),
+                                      ),
                                     ),
-                                  ],
-                                ),
+                                    onPressed: () {
+                                      /*Navigator.push(context,
+                                        MaterialPageRoute(builder: (context) => Login()),
+                                        ); */
+                                    },
+                                  ),
+                                ],
                               ),
                             ),
 
