@@ -4,6 +4,8 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter/services.dart';
 import 'list_of_quizzes.dart';
 import 'list_of_sub_lessons.dart';
+import '../widgets/bottom_nav.dart';
+import '../home-screens/home.dart';
 
 
 class ListOfLessons extends StatefulWidget {
@@ -15,22 +17,21 @@ class ListOfLessons extends StatefulWidget {
 class ListOfLessonsState extends State<ListOfLessons> {
   final _formKey = GlobalKey<FormState>();
 
-  int _selectedIndex = 0;
+  int _currentIndex = 1;
   static List<Widget> _screens = [
     /*Screen1(),
     Screen2(),
     Screen3(),
-    Screen4(),*/
+    Screen4(), */
   ];
-
 
   void _onItemTapped(int index) {
     setState(() {
-      _selectedIndex = index;
+      _currentIndex = index;
       Navigator.push(
         context,
         MaterialPageRoute(
-            builder: (context) => _screens[_selectedIndex]),
+            builder: (context) => _screens[_currentIndex]),
       );
     });
   }
@@ -614,7 +615,7 @@ class ListOfLessonsState extends State<ListOfLessons> {
         ),
 
 
-        bottomNavigationBar: BottomNavigationBar(// Set background color
+        /*bottomNavigationBar: BottomNavigationBar(// Set background color
           selectedItemColor: Color(0xFF000000), // Set selected item color
           unselectedItemColor: Color(0xFFFFFFFF),
           items: const <BottomNavigationBarItem>[
@@ -638,6 +639,10 @@ class ListOfLessonsState extends State<ListOfLessons> {
             ),
           ],
           currentIndex: _selectedIndex,
+          onTap: _onItemTapped,
+        ), */
+        bottomNavigationBar: BottomNav(
+          currentIndex: _currentIndex,
           onTap: _onItemTapped,
         ),
 
