@@ -7,6 +7,7 @@ import 'saved_translations.dart';
 import '../learn/list_of_lessons.dart';
 import '../widgets/bottom_nav.dart';
 import '../widgets/left_drawer.dart';
+import '../widgets/screens.dart';
 
 
 /*class GraphData {
@@ -31,12 +32,6 @@ class HomeState extends State<Home> {
 
 
   int _currentIndex = 0;
-  static List<Widget> _screens = [
-    /*Screen1(),
-    Screen2(),
-    Screen3(),
-    Screen4(), */
-  ];
 
   void _onItemTapped(int index) {
     setState(() {
@@ -44,7 +39,7 @@ class HomeState extends State<Home> {
       Navigator.push(
         context,
         MaterialPageRoute(
-            builder: (context) => _screens[_currentIndex]),
+            builder: (context) => screens[_currentIndex]),
       );
     });
   }
