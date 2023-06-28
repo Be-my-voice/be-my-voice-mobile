@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import '../settings/profile.dart';
+import '../login/login.dart';
 
 
 class LeftDrawer extends StatelessWidget {
-
 
   LeftDrawer();
 
@@ -118,8 +119,10 @@ class LeftDrawer extends StatelessWidget {
               ],
             ),
             onTap: () {
-
-              Navigator.pop(context);
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => Profile()),
+              );
             },
           ),
           ListTile(
@@ -179,7 +182,10 @@ class LeftDrawer extends StatelessWidget {
                       ),
                     ),
                     onPressed: () {
-                      Navigator.pop(context);
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => Login()),
+                      );
                     },
                   ),
                 ),
