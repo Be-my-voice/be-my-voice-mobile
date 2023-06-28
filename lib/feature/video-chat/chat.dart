@@ -114,15 +114,60 @@ class ChatState extends State<Chat> {
                   ]
               ),
               Spacer(),
-              GestureDetector(
+              /*GestureDetector(
                 onTap: () {
-                  Navigator.pop(context);
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        contentPadding: EdgeInsets.only(top: 0),
+                        title: Text('Alert Dialog'),
+                        content: Text('This is an example dialog.'),
+                        actions: [
+                          // Dialog actions
+                        ],
+                      );
+                    },
+                  );
                 },
                 child: Icon(
                   Icons.more_vert, // The icon to display
                   color: Color(0xFF147B72), // Color of the icon
                   size: 20.0, // Size of the icon
                 ),
+              ), */
+              PopupMenuButton<String>(
+                child: Icon(
+                  Icons.more_vert, // The icon to display
+                  color: Color(0xFF147B72), // Color of the icon
+                  size: 20.0, // Size of the icon
+                ),
+                itemBuilder: (BuildContext context) => [
+                  PopupMenuItem<String>(
+                    value: 'View Contact',
+                    child: Text('View Contact'),
+                  ),
+                  PopupMenuItem<String>(
+                    value: 'Media',
+                    child: Text('Media'),
+                  ),
+                  PopupMenuItem<String>(
+                    value: 'Search',
+                    child: Text('Search'),
+                  ),
+                  PopupMenuItem<String>(
+                    value: 'Mute Notifications',
+                    child: Text('Mute Notifications'),
+                  ),
+                  PopupMenuItem<String>(
+                    value: 'Clear Chat',
+                    child: Text('Clear Chat'),
+                  ),
+                  PopupMenuItem<String>(
+                    value: 'Wallpaper',
+                    child: Text('Wallpaper'),
+                  ),
+                ],
               ),
 
             ],
@@ -134,35 +179,6 @@ class ChatState extends State<Chat> {
             padding: EdgeInsets.all(5.0),
             child: ListView(
                 children: [
-                  Expanded(
-                    child: Container(
-                      margin: EdgeInsets.only(left: 20.0, right: 20.0),
-                      child:Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            GestureDetector(
-                              onTap: () {
-
-                              },
-                              child:RichText(
-                                text: TextSpan(
-                                  text: 'Contacts',
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 20,
-                                    color: Color(0xFF147B72),
-                                  ),
-                                ),
-                              ),
-                            ),
-
-                          ]
-                      ),
-                    ),
-                  ),
-                  Container(
-                    height: 5,
-                  ),
                   Row(
                     children: [
                       SizedBox(width: 10.0),
@@ -171,11 +187,9 @@ class ChatState extends State<Chat> {
                             key: _formKey,
                             child: Column(
                                 children: [
-
                                   Container(
                                     height:10,
                                   ),
-
                                   Container(
                                     margin: EdgeInsets.only(left:15.0, right:15.0,top:5, bottom:5 ),
                                     child: TextFormField(
@@ -224,12 +238,135 @@ class ChatState extends State<Chat> {
                             )
                         ),
                       ),
-
                       SizedBox(width: 10.0),
                     ],
                   ),
+
+                  Expanded(
+                    child: Container(
+                      margin: EdgeInsets.only(left: 20.0, right: 20.0),
+                      child:Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            ElevatedButton(
+                              child: Text('May 07',
+                                style: TextStyle(
+                                  fontSize: 10.0, // Replace with your desired font size
+                                ),
+                              ),
+                              style: ButtonStyle(
+                                fixedSize: MaterialStateProperty.all(Size(100, 10)),
+                                backgroundColor: MaterialStateProperty.all<Color>(
+                                    Color(0xFF656565)),
+                                shape: MaterialStateProperty.all<
+                                    RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(20),
+                                  ),
+                                ),
+                              ),
+                              onPressed: () {
+
+                              },
+                            ),
+                          ]
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: Container(
+                      margin: EdgeInsets.only(right: 10.0),
+                      child:Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Container(
+                              margin: EdgeInsets.only(top:5.0, bottom: 5.0),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10.0),
+                                color: Color(0xFF147B72),
+                              ),
+                              padding: EdgeInsets.all(15.0),
+                              child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    RichText(
+                                      text: TextSpan(
+                                        text:'Good morning! I am from Colombo.',
+                                        style: TextStyle(
+                                          fontSize: 15,
+                                          color: Color(0xFFFFFFFF),
+                                        ),
+                                      ),
+                                    ),
+                                  ]
+                              ),
+                            ),
+                          ],
+                      ),
+                    ),
+                  ),
                   Container(
-                    height:15,
+                    alignment: Alignment.centerRight,
+                    margin: EdgeInsets.only(right: 10.0),
+                    child: RichText(
+                      text: TextSpan(
+                        text:'07.30PM',
+                        style: TextStyle(
+                          fontSize: 10,
+                          color: Color(0xFF000000),
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ),
+
+                  Expanded(
+                    child: Container(
+                      margin: EdgeInsets.only(left: 10.0),
+                      child:Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Container(
+                            margin: EdgeInsets.only(top:5.0, bottom: 5.0),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10.0),
+                              color: Color(0xFFFFFFFF),
+                            ),
+                            padding: EdgeInsets.all(15.0),
+                            child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  RichText(
+                                    text: TextSpan(
+                                      text:'Good morning!',
+                                      style: TextStyle(
+                                        fontSize: 15,
+                                        color: Color(0xFF000000),
+                                      ),
+                                    ),
+                                  ),
+                                ]
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Container(
+                    alignment: Alignment.centerLeft,
+                    margin: EdgeInsets.only(left: 10.0),
+                    child: RichText(
+                      text: TextSpan(
+                        text:'07.31PM',
+                        style: TextStyle(
+                          fontSize: 10,
+                          color: Color(0xFF000000),
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
                   ),
 
                 ]

@@ -100,14 +100,14 @@ class LeftDrawer extends StatelessWidget {
               children: [
                 SizedBox(width: 30.0),
                 Icon(
-                  Icons.person, // The icon to display
+                  Icons.settings, // The icon to display
                   color: Color(0xFF147B72), // Color of the icon
                   size: 30.0,
                 ),
                 SizedBox(width: 10.0),
                 RichText(
                   text: TextSpan(
-                    text: 'Profile',
+                    text: 'Settings',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 20,
@@ -149,33 +149,7 @@ class LeftDrawer extends StatelessWidget {
               Navigator.pop(context);
             },
           ),
-          ListTile(
-            title: Row(
-              children: [
-                SizedBox(width: 30.0),
-                Icon(
-                  Icons.settings, // The icon to display
-                  color: Color(0xFF147B72), // Color of the icon
-                  size: 30.0,
-                ),
-                SizedBox(width: 10.0),
-                RichText(
-                  text: TextSpan(
-                    text: 'Settings',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20,
-                      color: Color(0xFF147B72),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            onTap: () {
 
-              Navigator.pop(context);
-            },
-          ),
           ListTile(
             title: Row(
               children: [
