@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/services.dart';
+import '../widgets/bottom_nav.dart';
+import '../widgets/left_drawer.dart';
 
 
 class SavedTranslations extends StatefulWidget {

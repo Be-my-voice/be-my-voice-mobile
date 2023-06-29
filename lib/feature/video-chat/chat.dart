@@ -3,6 +3,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/services.dart';
 import '../widgets/bottom_nav.dart';
+import '../widgets/screens.dart';
 
 
 class Chat extends StatefulWidget {
@@ -14,22 +15,14 @@ class Chat extends StatefulWidget {
 class ChatState extends State<Chat> {
   final _formKey = GlobalKey<FormState>();
   int _currentIndex = 2;
-  int _selectedIndex = 2;
-  static List<Widget> _screens = [
-    /*Screen1(),
-    Screen2(),
-    Screen3(),
-    Screen4(),*/
-  ];
-
 
   void _onItemTapped(int index) {
     setState(() {
-      _selectedIndex = index;
+      _currentIndex = index;
       Navigator.push(
         context,
         MaterialPageRoute(
-            builder: (context) => _screens[_selectedIndex]),
+            builder: (context) => screens[_currentIndex]),
       );
     });
   }

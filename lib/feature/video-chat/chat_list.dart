@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/services.dart';
-import '../widgets/left_drawer.dart';
 import 'contact_list.dart';
 import 'chat.dart';
+import '../widgets/bottom_nav.dart';
+import '../widgets/left_drawer.dart';
+import '../widgets/screens.dart';
 
 
 class ChatList extends StatefulWidget {
@@ -15,22 +17,15 @@ class ChatList extends StatefulWidget {
 
 class ChatListState extends State<ChatList> {
   final _formKey = GlobalKey<FormState>();
-  int _selectedIndex = 2;
-  static List<Widget> _screens = [
-    /*Screen1(),
-    Screen2(),
-    Screen3(),
-    Screen4(),*/
-  ];
-
+  int _currentIndex = 2;
 
   void _onItemTapped(int index) {
     setState(() {
-      _selectedIndex = index;
+      _currentIndex = index;
       Navigator.push(
         context,
         MaterialPageRoute(
-            builder: (context) => _screens[_selectedIndex]),
+            builder: (context) => screens[_currentIndex]),
       );
     });
   }
@@ -499,33 +494,8 @@ class ChatListState extends State<ChatList> {
         ),
 
 
-        bottomNavigationBar: BottomNavigationBar(// Set background color
-          selectedItemColor: Color(0xFF000000), // Set selected item color
-          unselectedItemColor: Color(0xFFFFFFFF),
-          items: const <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home_rounded ),
-              label: ' ',
-              backgroundColor: Color(0xFF147B72),
-
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.camera_alt_outlined),
-              label: ' ',
-              backgroundColor: Color(0xFF147B72),
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.menu_book_outlined),
-              label: ' ',
-              backgroundColor: Color(0xFF147B72),
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.groups_outlined),
-              label: ' ',
-              backgroundColor: Color(0xFF147B72),
-            ),
-          ],
-          currentIndex: _selectedIndex,
+        bottomNavigationBar: BottomNav(
+          currentIndex: _currentIndex,
           onTap: _onItemTapped,
         ),
       ),

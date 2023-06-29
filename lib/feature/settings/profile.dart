@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'edit_profile.dart';
+import 'notifications.dart';
+import 'privacy_policy.dart';
+import 'security.dart';
+import 'frequently_asked_questions.dart';
 
 
 class Profile extends StatelessWidget {
@@ -125,8 +130,10 @@ class Profile extends StatelessWidget {
               ],
             ),
             onTap: () {
-
-              Navigator.pop(context);
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => EditProfile()),
+              );
             },
           ),
           ListTile(
@@ -159,7 +166,10 @@ class Profile extends StatelessWidget {
               ],
             ),
             onTap: () {
-              Navigator.pop(context);
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => Notifications()),
+              );
             },
           ),
           ListTile(
@@ -225,7 +235,10 @@ class Profile extends StatelessWidget {
               ],
             ),
             onTap: () {
-              Navigator.pop(context);
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => Security()),
+              );
             },
           ),
           ListTile(
@@ -258,7 +271,10 @@ class Profile extends StatelessWidget {
               ],
             ),
             onTap: () {
-              Navigator.pop(context);
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => FrequentlyAskedQuestions()),
+              );
             },
           ),
           ListTile(
@@ -291,7 +307,10 @@ class Profile extends StatelessWidget {
               ],
             ),
             onTap: () {
-              Navigator.pop(context);
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => PrivacyPolicy()),
+              );
             },
           ),
 

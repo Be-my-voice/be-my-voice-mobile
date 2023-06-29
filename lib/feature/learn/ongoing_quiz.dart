@@ -5,7 +5,9 @@ import 'package:flutter/services.dart';
 import 'quiz_answer_wrong.dart';
 import 'quiz_answer_correct.dart';
 import 'list_of_quizzes.dart';
+import '../widgets/bottom_nav.dart';
 import '../widgets/left_drawer.dart';
+import '../widgets/screens.dart';
 
 class OngoingQuiz extends StatefulWidget {
   createState() {
@@ -15,22 +17,15 @@ class OngoingQuiz extends StatefulWidget {
 
 class OngoingQuizState extends State<OngoingQuiz> {
 
-  int _selectedIndex = 0;
-  static List<Widget> _screens = [
-    /*Screen1(),
-    Screen2(),
-    Screen3(),
-    Screen4(),*/
-  ];
-
+  int _currentIndex = 0;
 
   void _onItemTapped(int index) {
     setState(() {
-      _selectedIndex = index;
+      _currentIndex = index;
       Navigator.push(
         context,
         MaterialPageRoute(
-            builder: (context) => _screens[_selectedIndex]),
+            builder: (context) => screens[_currentIndex]),
       );
     });
   }
@@ -570,32 +565,11 @@ class OngoingQuizState extends State<OngoingQuiz> {
         ),
 
 
-        bottomNavigationBar: BottomNavigationBar(// Set background color
-          selectedItemColor: Color(0xFF000000), // Set selected item color
-          unselectedItemColor: Color(0xFFFFFFFF),
-          items: const <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home_rounded ),
-              label: ' ',
-              backgroundColor: Color(0xFF147B72),
-
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.camera_alt_outlined),
-              label: ' ',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.menu_book_outlined),
-              label: ' ',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.groups_outlined),
-              label: ' ',
-            ),
-          ],
-          currentIndex: _selectedIndex,
+        bottomNavigationBar: BottomNav(
+          currentIndex: _currentIndex,
           onTap: _onItemTapped,
         ),
+
       ),
     );
   }
