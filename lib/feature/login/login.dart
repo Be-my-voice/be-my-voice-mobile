@@ -34,7 +34,6 @@ class LoginState extends State<Login> {
               children: [
                 GestureDetector(
                   onTap: () {
-                    // Navigation logic here
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => OnboardingFour()),
@@ -46,19 +45,19 @@ class LoginState extends State<Login> {
                     size: 20.0, // Size of the icon
                   ),
                 ),
-                Expanded(
-                  child: Container(
-                    margin: EdgeInsets.only(left: 5.0, right: 20.0),
-                    child: Text('Login',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Color(0xFF000000),
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20,// Set the text color
-                      ),
+                Container(
+                  margin: EdgeInsets.only(left: 130.0, right: 20.0),
+                  child: Text('Login',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Color(0xFF000000),
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20,// Set the text color
                     ),
-                  )
-                ),
+                  ),
+                )
+
+
               ],
             ),
           ),
@@ -159,11 +158,10 @@ class LoginState extends State<Login> {
                       Container(
                         height:30,
                       ),
-                      Expanded(
-                        child: Container(
+                      Container(
                           margin: EdgeInsets.only(left: 30.0, right: 30.0),
-                            child:Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
+                          child:Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 RichText(
                                   text: TextSpan(
@@ -187,55 +185,52 @@ class LoginState extends State<Login> {
                                           Navigator.push(
                                             context,
                                             MaterialPageRoute(
-                                              builder: (context) => Signup()
+                                                builder: (context) => Signup()
                                             ),
                                           );
                                         }
-                                        ),
+                                  ),
                                 ),
                               ]
                           )
-                        ),
                       ),
                       Container(
                         height:20,
                       ),
-                      Expanded(
-                        child: Container(
-                          margin: EdgeInsets.only(left: 20.0, right: 20.0),
-                            child:Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Container(
-                                    height: 1.0,
-                                    width:140,
-                                    decoration: BoxDecoration(
-                                      border: Border.all(
-                                        color: Color(0xFF717784),
-                                      ),
-                                    ),
+                      Container(
+                        margin: EdgeInsets.only(left: 20.0, right: 20.0),
+                        child:Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Container(
+                                height: 1.0,
+                                width:140,
+                                decoration: BoxDecoration(
+                                  border: Border.all(
+                                    color: Color(0xFF717784),
                                   ),
-                                  RichText(
-                                    text: TextSpan(
-                                      text: ' OR ',
-                                      style: TextStyle(
-                                        fontSize: 15,
-                                        color: Color(0xFF717784),
-                                      ),
-                                    ),
+                                ),
+                              ),
+                              RichText(
+                                text: TextSpan(
+                                  text: ' OR ',
+                                  style: TextStyle(
+                                    fontSize: 15,
+                                    color: Color(0xFF717784),
                                   ),
-                                  Container(
-                                    height: 1.0,
-                                    width:140,
-                                    decoration: BoxDecoration(
-                                      border: Border.all(
-                                        color: Color(0xFF717784),
-                                        //width: 2.0,
-                                      ),
-                                    ),
+                                ),
+                              ),
+                              Container(
+                                height: 1.0,
+                                width:140,
+                                decoration: BoxDecoration(
+                                  border: Border.all(
+                                    color: Color(0xFF717784),
+                                    //width: 2.0,
                                   ),
-                                ]
-                            ),
+                                ),
+                              ),
+                            ]
                         ),
                       ),
                       Container(
@@ -251,16 +246,14 @@ class LoginState extends State<Login> {
                                   fontSize: 24,
                                 ),
                               ),
-                              Expanded(
-                                  child: Container(
-                                    margin: EdgeInsets.only(left: 60.0),
-                                    child: Text('Sign in with Google',
-                                      style: TextStyle(
-                                        color: Color(0xFF000000),
-                                      ),
-                                    ),
-                                  )
-                              ),
+                              Container(
+                                margin: EdgeInsets.only(left: 60.0),
+                                child: Text('Sign in with Google',
+                                  style: TextStyle(
+                                    color: Color(0xFF000000),
+                                  ),
+                                ),
+                              )
                             ]
                           ),
                           style: ButtonStyle(
@@ -296,16 +289,14 @@ class LoginState extends State<Login> {
                                   size: 32,
                                   color: Colors.black,
                                 ),
-                                Expanded(
-                                    child: Container(
-                                      margin: EdgeInsets.only(left: 60.0),
-                                      child: Text('Sign in with Apple',
-                                        style: TextStyle(
-                                          color: Color(0xFF000000),
-                                        ),
-                                      ),
-                                    )
-                                ),
+                                Container(
+                                  margin: EdgeInsets.only(left: 60.0),
+                                  child: Text('Sign in with Apple',
+                                    style: TextStyle(
+                                      color: Color(0xFF000000),
+                                    ),
+                                  ),
+                                )
                               ]
                           ),
                           style: ButtonStyle(
@@ -341,16 +332,14 @@ class LoginState extends State<Login> {
                                   size: 32,
                                   color: Colors.blue,
                                 ),
-                                Expanded(
-                                    child: Container(
-                                      margin: EdgeInsets.only(left: 60.0),
-                                      child: Text('Sign in with Facebook',
-                                        style: TextStyle(
-                                          color: Color(0xFF000000),
-                                        ),
-                                      ),
-                                    )
-                                ),
+                                Container(
+                                  margin: EdgeInsets.only(left: 60.0),
+                                  child: Text('Sign in with Facebook',
+                                    style: TextStyle(
+                                      color: Color(0xFF000000),
+                                    ),
+                                  ),
+                                )
                               ]
                           ),
                           style: ButtonStyle(

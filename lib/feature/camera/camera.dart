@@ -136,7 +136,7 @@ class _CameraState extends State<Camera> {
                     ],
                   ),
                 ),
-                /*Container(
+                Container(
                   height: 200.0,
                   margin: EdgeInsets.only(
                       top: 10.0, bottom: 10.0, left: 30.0, right: 30.0),
@@ -446,7 +446,7 @@ class _CameraState extends State<Camera> {
                       );
                     },
                   ),
-                ),*/
+                ),
 
               ],
             )

@@ -24,13 +24,9 @@ class OnboardingFour extends StatelessWidget {
                       width: 130.0, height: 130.0),
                 ),
               ),
-              Positioned(
-                  top: 270, // Set the desired position
-                  left: 20,
-                  child: Container(
+                  Container(
+                      margin: EdgeInsets.only(top: 30.0, left: 40.0, right: 40.0),
                       padding: EdgeInsets.all(16.0),
-                      margin:
-                      EdgeInsets.symmetric(vertical: 16.0, horizontal: 8.0),
                       child: Column(children: <Widget>[
                         Center(
                           child: RichText(
@@ -116,7 +112,7 @@ class OnboardingFour extends StatelessWidget {
                             },
                           ),
                         ),
-                      ]))),
+                      ])),
             ],
           )),
     );

@@ -74,77 +74,71 @@ class SessionStartViewState extends State<SessionStartView> {
                     height:5,
                   ),
 
-
-                  Expanded(
-                    child: Container(
-                      margin: EdgeInsets.only(top: 160.0, left: 40.0, right: 40.0),
-                      child:Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            RichText(
-                              text: TextSpan(
-                                text: 'Please await the ',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 25,
-                                  color: Color(0xFF147B72),
-                                ),
+                  Container(
+                    margin: EdgeInsets.only(top: 160.0, left: 40.0, right: 40.0),
+                    child:Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          RichText(
+                            text: TextSpan(
+                              text: 'Please await the ',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 25,
+                                color: Color(0xFF147B72),
                               ),
                             ),
-                            RichText(
-                              text: TextSpan(
-                                text: 'commencement of the ',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 25,
-                                  color: Color(0xFF147B72),
-                                ),
+                          ),
+                          RichText(
+                            text: TextSpan(
+                              text: 'commencement of the ',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 25,
+                                color: Color(0xFF147B72),
                               ),
                             ),
-                            RichText(
-                              text: TextSpan(
-                                text: 'session.',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 25,
-                                  color: Color(0xFF147B72),
-                                ),
+                          ),
+                          RichText(
+                            text: TextSpan(
+                              text: 'session.',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 25,
+                                color: Color(0xFF147B72),
                               ),
                             ),
-                          ]
-                      ),
+                          ),
+                        ]
                     ),
                   ),
-
-                  Expanded(
-                    child: Container(
-                      margin: EdgeInsets.only(top: 90.0, left: 40.0, right: 40.0),
-                      child:Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            RichText(
-                              text: TextSpan(
-                                text: 'session ID ',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 14,
-                                  color: Color(0xFFADB3BC),
-                                ),
+                  Container(
+                    margin: EdgeInsets.only(top: 90.0, left: 40.0, right: 40.0),
+                    child:Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          RichText(
+                            text: TextSpan(
+                              text: 'session ID ',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 14,
+                                color: Color(0xFFADB3BC),
                               ),
                             ),
-                            RichText(
-                              text: TextSpan(
-                                text: 'ABC-DEF-GHI ',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 25,
-                                  color: Color(0xFF555555),
-                                ),
+                          ),
+                          RichText(
+                            text: TextSpan(
+                              text: 'ABC-DEF-GHI ',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 25,
+                                color: Color(0xFF555555),
                               ),
                             ),
+                          ),
 
-                          ]
-                      ),
+                        ]
                     ),
                   ),
 
@@ -198,28 +192,23 @@ class SessionStartViewState extends State<SessionStartView> {
                                 height: 150,
                                 child: Column(
                                     children: [
-                                      Expanded(
-                                          child: Container(
-                                            margin: EdgeInsets.only(left: 10.0, right: 10.0),
-                                            child: Text('Do you wish to quit?',
-                                              textAlign: TextAlign.center,
-                                              style: TextStyle(
-                                                color: Color(0xFF000000),
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 20,// Set the text color
-                                              ),
-                                            ),
-                                          )
+                                      Container(
+                                        margin: EdgeInsets.only(left: 10.0, right: 10.0),
+                                        child: Text('Do you wish to quit?',
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                            color: Color(0xFF000000),
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 20,// Set the text color
+                                          ),
+                                        ),
                                       ),
-
-                                      Expanded(
-                                        child: Container(
-                                          child: Text('Your session will be automatically cancelled if you choose to cancel it.',
-                                            textAlign: TextAlign.center,
-                                            style: TextStyle(
-                                              color: Color(0xFFA1A8B0),
-                                              fontSize: 18,// Set the text color
-                                            ),
+                                      Container(
+                                        child: Text('Your session will be automatically\n cancelled if you choose to\n cancel it.',
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                            color: Color(0xFFA1A8B0),
+                                            fontSize: 18,// Set the text color
                                           ),
                                         ),
                                       ),
@@ -341,14 +330,12 @@ class SessionStartViewState extends State<SessionStartView> {
                                                                 ),
                                                               ),
                                                             ),
-                                                            Expanded(
-                                                              child: Container(
-                                                                child: Text('Session ended.',
-                                                                  textAlign: TextAlign.center,
-                                                                  style: TextStyle(
-                                                                    color: Color(0xFFA1A8B0),
-                                                                    fontSize: 18,// Set the text color
-                                                                  ),
+                                                            Container(
+                                                              child: Text('Session ended.',
+                                                                textAlign: TextAlign.center,
+                                                                style: TextStyle(
+                                                                  color: Color(0xFFA1A8B0),
+                                                                  fontSize: 18,// Set the text color
                                                                 ),
                                                               ),
                                                             ),

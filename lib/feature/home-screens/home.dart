@@ -119,25 +119,23 @@ class HomeState extends State<Home> {
                     ),
 
                     //Welcome topic
-                    Expanded(
-                      child: Container(
-                        margin: EdgeInsets.only(left: 20.0, right: 20.0),
-                        child:Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              RichText(
-                                text: TextSpan(
-                                  text: 'Welcome Back Anurdhi!',
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 20,
-                                    color: Color(0xFF000000),
-                                  ),
+                    Container(
+                      margin: EdgeInsets.only(left: 20.0, right: 20.0),
+                      child:Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            RichText(
+                              text: TextSpan(
+                                text: 'Welcome Back Anurdhi!',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20,
+                                  color: Color(0xFF000000),
                                 ),
                               ),
+                            ),
 
-                            ]
-                        ),
+                          ]
                       ),
                     ),
 

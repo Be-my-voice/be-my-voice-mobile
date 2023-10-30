@@ -69,53 +69,48 @@ class ScanQrCodeState extends State<ScanQrCode> {
                     height:5,
                   ),
 
-                  //Welcome topic
-                  Expanded(
-                    child: Container(
-                      margin: EdgeInsets.only(left: 20.0, right: 20.0),
-                      child:Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            RichText(
-                              text: TextSpan(
-                                text: 'Scan QR code',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 20,
-                                  color: Color(0xFF000000),
-                                ),
+                  Container(
+                    margin: EdgeInsets.only(left: 20.0, right: 20.0),
+                    child:Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          RichText(
+                            text: TextSpan(
+                              text: 'Scan QR code',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20,
+                                color: Color(0xFF000000),
                               ),
                             ),
-                          ]
-                      ),
+                          ),
+                        ]
                     ),
                   ),
-                  Expanded(
-                    child: Container(
-                      margin: EdgeInsets.only(top: 20.0, left: 40.0, right: 40.0),
-                      child:Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            RichText(
-                              text: TextSpan(
-                                text: 'Please join the session by scanning ',
-                                style: TextStyle(
-                                  fontSize: 18,
-                                  color: Color(0xFFA1A8B0),
-                                ),
+                  Container(
+                    margin: EdgeInsets.only(top: 20.0, left: 40.0, right: 40.0),
+                    child:Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          RichText(
+                            text: TextSpan(
+                              text: 'Please join the session by scanning ',
+                              style: TextStyle(
+                                fontSize: 18,
+                                color: Color(0xFFA1A8B0),
                               ),
                             ),
-                            RichText(
-                              text: TextSpan(
-                                text: 'the QR code provided',
-                                style: TextStyle(
-                                  fontSize: 18,
-                                  color: Color(0xFFA1A8B0),
-                                ),
+                          ),
+                          RichText(
+                            text: TextSpan(
+                              text: 'the QR code provided',
+                              style: TextStyle(
+                                fontSize: 18,
+                                color: Color(0xFFA1A8B0),
                               ),
                             ),
-                          ]
-                      ),
+                          ),
+                        ]
                     ),
                   ),
 
