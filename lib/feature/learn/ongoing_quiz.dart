@@ -569,7 +569,6 @@ class OngoingQuizState extends State<OngoingQuiz> {
           currentIndex: _currentIndex,
           onTap: _onItemTapped,
         ),
-
       ),
     );
   }

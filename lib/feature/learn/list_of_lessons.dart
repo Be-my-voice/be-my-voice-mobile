@@ -18,7 +18,7 @@ class ListOfLessons extends StatefulWidget {
 class ListOfLessonsState extends State<ListOfLessons> {
   final _formKey = GlobalKey<FormState>();
 
-  int _currentIndex = 1;
+  int _currentIndex = 2;
   static List<Widget> _screens = [
     /*Screen1(),
     Screen2(),

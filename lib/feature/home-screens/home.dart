@@ -1,3 +1,4 @@
+import 'package:be_my_voice/feature/camera/scan_qr_code.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/widgets.dart';
@@ -5,9 +6,11 @@ import 'package:flutter/services.dart';
 //import 'package:charts_flutter/flutter.dart' as charts;
 import 'saved_translations.dart';
 import '../learn/list_of_lessons.dart';
+import '../camera/camera.dart';
 import '../widgets/bottom_nav.dart';
 import '../widgets/left_drawer.dart';
 import '../widgets/screens.dart';
+import 'package:fl_chart/fl_chart.dart';
 
 
 /*class GraphData {
@@ -43,6 +46,40 @@ class HomeState extends State<Home> {
       );
     });
   }
+
+  List<PieChartSectionData> getSections() {
+    return List.generate(4, (int index) {
+      final isTouched = index == 0;
+      final double fontSize = isTouched ? 24 : 16;
+      final double radius = isTouched ? 60 : 50;
+      return PieChartSectionData(
+        color: getColor(index),
+        value: 25,
+        title: 'Segment $index',
+        radius: radius,
+        titleStyle: TextStyle(
+          fontSize: fontSize,
+          fontWeight: FontWeight.bold,
+          color: const Color(0xffffffff),
+        ),
+      );
+    });
+  }
+  Color getColor(int index) {
+    switch (index) {
+      case 0:
+        return const Color(0xff0293ee);
+      case 1:
+        return const Color(0xfff8b250);
+      case 2:
+        return const Color(0xff845bef);
+      case 3:
+        return const Color(0xff13d38e);
+      default:
+        return const Color(0xff0293ee);
+    }
+  }
+
 
 
   @override
@@ -146,10 +183,10 @@ class HomeState extends State<Home> {
                                     ),
                                   ),
                                   onPressed: () {
-                                    /*Navigator.push(
+                                    Navigator.push(
                                       context,
-                                      MaterialPageRoute(builder: (context) => SavedTranslations()),
-                                    ); */
+                                      MaterialPageRoute(builder: (context) => ScanQrCode()),
+                                    );
                                   },
                                 ),
                               ),
@@ -405,6 +442,19 @@ class HomeState extends State<Home> {
                             ),
                           ),
 
+                          /*Container(
+                            alignment: Alignment.centerRight,
+                            margin: EdgeInsets.only(top: 15.0),
+                              child: PieChart(
+                                PieChartData(
+                                  sections: getSections(),
+                                  borderData: FlBorderData(show: false),
+                                  centerSpaceRadius: 20,
+                                  sectionsSpace: 0,
+                                ),
+                              ),
+                          ), */
+
                           Container(
                             alignment: Alignment.centerRight,
                             margin: EdgeInsets.only(top: 15.0),
@@ -423,6 +473,29 @@ class HomeState extends State<Home> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(builder: (context) => ListOfLessons()),
+                                );
+                              },
+                            ),
+                          ),
+
+                          Container(
+                            alignment: Alignment.centerRight,
+                            margin: EdgeInsets.only(top: 15.0),
+                            child: ElevatedButton(
+                              child: Text('Camera'),
+                              style: ButtonStyle(
+                                fixedSize: MaterialStateProperty.all(Size(120, 40)),
+                                backgroundColor: MaterialStateProperty.all<Color>(Color(0xFF147B72)),
+                                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(20), // Set border radius
+                                  ),
+                                ),
+                              ),
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => Camera()),
                                 );
                               },
                             ),

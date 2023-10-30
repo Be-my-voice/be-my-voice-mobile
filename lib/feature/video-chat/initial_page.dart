@@ -17,7 +17,7 @@ class InitialPage extends StatefulWidget {
 
 class InitialPageState extends State<InitialPage> {
   final _formKey = GlobalKey<FormState>();
-  int _currentIndex = 2;
+  int _currentIndex = 3;
 
   void _onItemTapped(int index) {
     setState(() {
