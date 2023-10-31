@@ -31,22 +31,32 @@ class _CameraState extends State<Camera> {
   }
 
   void uploadToServer(String base64String) async {
-    // Define your request URL and JSON data
-    final String apiUrl = 'http://172.190.66.169:8080/translations';
-    final Map<String, String> headers = {'Content-Type': 'application/json'};
-    final Map<String, dynamic> data = {
-      "sessionID": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-      "userID": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-      "base64Video": base64String
-    };
-    final String jsonData = jsonEncode(data);   // Make the POST request
-    final response = await http.post(     Uri.parse(apiUrl),     headers: headers,     body: jsonData,   );
-    if (response.statusCode == 200) {
-      print("Request succeeded with response: ${response.body}");
-    } else {
-      print("Request failed with status code: ${response.statusCode}");
-      print("Response data: ${response.body}");
+    try{
+      print("xxxx");
+      // Define your request URL and JSON data
+      final String apiUrl = 'http://172.190.66.169:8002/translations';
+      final Map<String, String> headers = {'Content-Type': 'application/json'};
+      final Map<String, dynamic> data = {
+        "sessionID": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+        "userID": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+        "base64Video": base64String
+      };
+      final String jsonData = jsonEncode(data);   // Make the POST request
+
+      print("xyxy");
+
+      final response = await http.post(     Uri.parse(apiUrl),     headers: headers,     body: jsonData,   );
+      print("yyyy");
+      if (response.statusCode == 200) {
+        print("Request succeeded with response: ${response.body}");
+      } else {
+        print("Request failed with status code: ${response.statusCode}");
+        print("Response data: ${response.body}");
+      }
+    }catch(e){
+      print(e);
     }
+
   }
 
 
@@ -56,6 +66,7 @@ class _CameraState extends State<Camera> {
         setState(() => _isRecording = false);
         String fileInBase64 = base64Encode(await file.readAsBytes());
         uploadToServer(fileInBase64);
+        print(fileInBase64);
         // Navigator.push(context, route);
       } else {
         await _cameraController.prepareForVideoRecording();

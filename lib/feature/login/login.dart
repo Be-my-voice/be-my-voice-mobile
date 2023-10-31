@@ -3,6 +3,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:http/http.dart';
 import '../splash-screen/onboarding_four.dart';
 import '../signup/signup.dart';
 import '../reset-password/reset_password_email.dart';
@@ -146,12 +147,30 @@ class LoginState extends State<Login> {
                               ),
                             ),
                           ),
-                          onPressed: () {
-
-                            Navigator.push(
+                          onPressed: () async {
+                            /*Navigator.push(
                               context,
                               MaterialPageRoute(builder: (context) => Home()),
-                            );
+                            ); */
+                            /*try{
+                              Response response = await post(
+                                  Uri.parse('https://reqres.in/api/login'),
+                                  body: {
+                                    'email' : email,
+                                    'password' : password
+                                  }
+                              );
+                              if(response.statusCode == 200){
+                                var data = jsonDecode(response.body.toString());
+                                print(data['token']);
+                                print('Login successfully');
+
+                              }else {
+                                print('failed');
+                              }
+                            }catch(e){
+                              print(e.toString());
+                            } */
                           },
                         ),
                       ),
