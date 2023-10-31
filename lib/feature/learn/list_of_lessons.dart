@@ -18,10 +18,15 @@ class ListOfLessons extends StatefulWidget {
 }
 
 class ListOfLessonsState extends State<ListOfLessons> {
+  @override
+  void initState() {
+    super.initState();
+    processJsonData();
+  }
   final _formKey = GlobalKey<FormState>();
-
   final jsonString = '[{"id": 6,"title": "Alphabets","enabled": true}, {"id": 7,"title": "Months","enabled": true}]';
-
+  List<List<String>> lessonListArray = [];
+  List<Widget> lessonGestureDetectors = [];
 
   void processJsonData() {
     List<dynamic> jsonData = json.decode(jsonString);
@@ -29,10 +34,80 @@ class ListOfLessonsState extends State<ListOfLessons> {
       int id = item['id'];
       String title = item['title'];
       bool enabled = item['enabled'];
-
+      lessonListArray.add(['$id', '$title', '$enabled']);
       print('ID: $id, Title: $title, Enabled: $enabled');
+      lessonGestureDetectors.add(
+          GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => ListOfSubLessons(lessonId: '$id',)),
+              );
+            },
+            child: Container(
+              margin: EdgeInsets.only(top:5.0, bottom: 5.0),
+              decoration: BoxDecoration(
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.5),
+                    spreadRadius: 0.5,
+                    blurRadius: 2,
+                    offset: Offset(0, 6), // Offset of the shadow
+                  ),
+                ],
+                borderRadius: BorderRadius.circular(10.0),
+                color: Color(0xFFFFFFFF),
+              ),
+              padding: EdgeInsets.all(15.0),
+              child: Row(
+                children: [
+                  Icon(
+                    Icons.photo_album_outlined, // The icon to display
+                    color: Color(0xFF147B72), // Color of the icon
+                    size: 35.0,
+                  ),
+                  SizedBox(
+                    width:5,
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      RichText(
+                        text: TextSpan(
+                          text: '$title',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 14,
+                            color: Color(0xFF147B72),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height:5,
+                      ),
+                      RichText(
+                        text: TextSpan(
+                          text:'Completed 0 out of 12',
+                          style: TextStyle(
+                            fontSize: 10,
+                            color: Color(0xFF000000),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Spacer(),
+                  Icon(
+                    Icons.arrow_forward_ios_rounded, // The icon to display
+                    color: Color(0xFF147B72), // Color of the icon
+                    size: 25.0,
+                  ),
+                ],
+              ),
+            ),
+          )
+      );
     }
-
   }
 
   int _currentIndex = 2;
@@ -66,6 +141,7 @@ class ListOfLessonsState extends State<ListOfLessons> {
     }
 
     return MaterialApp(
+
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         scaffoldBackgroundColor: Color(0xFFe5e5e5),
@@ -186,7 +262,7 @@ class ListOfLessonsState extends State<ListOfLessons> {
                                 keyboardType: TextInputType.text,
                                 onChanged: (value) {
                                   // Handle text changes
-                                  processJsonData();
+
                                 },
                               ),
                             ),
@@ -208,214 +284,7 @@ class ListOfLessonsState extends State<ListOfLessons> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
-                            GestureDetector(
-                              onTap: () {
-                                /*Navigator.push(
-                                  context,
-                                  MaterialPageRoute(builder: (context) => ListOfSubLessons()),
-                                ); */
-                              },
-                              child: Container(
-                                margin: EdgeInsets.only(top:5.0, bottom: 5.0),
-                                decoration: BoxDecoration(
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Colors.grey.withOpacity(0.5),
-                                      spreadRadius: 0.5,
-                                      blurRadius: 2,
-                                      offset: Offset(0, 6), // Offset of the shadow
-                                    ),
-                                  ],
-                                  borderRadius: BorderRadius.circular(10.0),
-                                  color: Color(0xFFFFFFFF),
-                                ),
-                                padding: EdgeInsets.all(15.0),
-                                child: Row(
-                                    children: [
-                                      Icon(
-                                        Icons.photo_album_outlined, // The icon to display
-                                        color: Color(0xFF147B72), // Color of the icon
-                                        size: 35.0,
-                                      ),
-                                      SizedBox(
-                                        width:5,
-                                      ),
-                                      Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: [
-                                          RichText(
-                                            text: TextSpan(
-                                              text:'Introduction to Sign Language',
-                                              style: TextStyle(
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 14,
-                                                color: Color(0xFF147B72),
-                                              ),
-                                            ),
-                                          ),
-                                          SizedBox(
-                                            height:5,
-                                          ),
-                                          RichText(
-                                            text: TextSpan(
-                                              text:'Completed 0 out of 12',
-                                              style: TextStyle(
-                                                fontSize: 10,
-                                                color: Color(0xFF000000),
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                      Spacer(),
-                                      Icon(
-                                        Icons.arrow_forward_ios_rounded, // The icon to display
-                                        color: Color(0xFF147B72), // Color of the icon
-                                        size: 25.0,
-                                      ),
-                                    ],
-                                ),
-                              ),
-                            ),
-
-                            GestureDetector(
-                              onTap: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(builder: (context) => ListOfSubLessons()),
-                                );
-                              },
-                              child: Container(
-                                margin: EdgeInsets.only(top:5.0, bottom: 5.0),
-                                decoration: BoxDecoration(
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Colors.grey.withOpacity(0.5),
-                                      spreadRadius: 0.5,
-                                      blurRadius: 2,
-                                      offset: Offset(0, 6), // Offset of the shadow
-                                    ),
-                                  ],
-                                  borderRadius: BorderRadius.circular(10.0),
-                                  color: Color(0xFFFFFFFF),
-                                ),
-                                padding: EdgeInsets.all(15.0),
-                                child: Row(
-                                  children: [
-                                    Icon(
-                                      Icons.photo_album_outlined, // The icon to display
-                                      color: Color(0xFF147B72), // Color of the icon
-                                      size: 35.0,
-                                    ),
-                                    SizedBox(
-                                      width:10,
-                                    ),
-                                    Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: [
-                                        RichText(
-                                          text: TextSpan(
-                                            text:'Days of the Week',
-                                            style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 14,
-                                              color: Color(0xFF147B72),
-                                            ),
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          height:5,
-                                        ),
-                                        RichText(
-                                          text: TextSpan(
-                                            text:'Completed 0 out of 07',
-                                            style: TextStyle(
-                                              fontSize: 10,
-                                              color: Color(0xFF000000),
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    Spacer(),
-                                    Icon(
-                                      Icons.arrow_forward_ios_rounded, // The icon to display
-                                      color: Color(0xFF147B72), // Color of the icon
-                                      size: 25.0,
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-
-                            GestureDetector(
-                              onTap: () {
-
-                              },
-                              child: Container(
-                                margin: EdgeInsets.only(top:5.0, bottom: 5.0),
-                                decoration: BoxDecoration(
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Colors.grey.withOpacity(0.5),
-                                      spreadRadius: 0.5,
-                                      blurRadius: 2,
-                                      offset: Offset(0, 6), // Offset of the shadow
-                                    ),
-                                  ],
-                                  borderRadius: BorderRadius.circular(10.0),
-                                  color: Color(0xFFFFFFFF),
-                                ),
-                                padding: EdgeInsets.all(15.0),
-                                child: Row(
-                                  children: [
-                                    Icon(
-                                      Icons.photo_album_outlined, // The icon to display
-                                      color: Color(0xFF147B72), // Color of the icon
-                                      size: 35.0,
-                                    ),
-                                    SizedBox(
-                                      width:10,
-                                    ),
-                                    Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: [
-                                        RichText(
-                                          text: TextSpan(
-                                            text:'Basic Greetings',
-                                            style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 14,
-                                              color: Color(0xFF147B72),
-                                            ),
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          height:5,
-                                        ),
-                                        RichText(
-                                          text: TextSpan(
-                                            text:'Completed 0 out of 06',
-                                            style: TextStyle(
-                                              fontSize: 10,
-                                              color: Color(0xFF000000),
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    Spacer(),
-                                    Icon(
-                                      Icons.arrow_forward_ios_rounded, // The icon to display
-                                      color: Color(0xFF147B72), // Color of the icon
-                                      size: 25.0,
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-
-
+                            ...lessonGestureDetectors,
                           ]
                       )
                   ),
@@ -461,4 +330,4 @@ class ListOfLessonsState extends State<ListOfLessons> {
     );
 
   }
-}
+  }

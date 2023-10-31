@@ -9,14 +9,22 @@ import '../widgets/screens.dart';
 
 
 class ListOfSubLessons extends StatefulWidget {
+  var lessonId;
+  ListOfSubLessons({required this.lessonId});
   createState() {
     return ListOfSubLessonsState();
   }
 }
 
 class ListOfSubLessonsState extends State<ListOfSubLessons> {
-
+  int lessonId = 0;
+  @override
+  void initState() {
+    super.initState();
+    lessonId = int.parse(widget.lessonId);
+  }
   int _currentIndex = 0;
+
 
   void _onItemTapped(int index) {
     setState(() {
@@ -112,7 +120,7 @@ class ListOfSubLessonsState extends State<ListOfSubLessons> {
                             ),
                             RichText(
                               text: TextSpan(
-                                text: ' Days of the week',
+                                text: '$lessonId Days of the week',
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 20,
