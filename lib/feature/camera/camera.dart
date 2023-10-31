@@ -25,7 +25,15 @@ class _CameraState extends State<Camera> {
     final cameras = await availableCameras();
     final front = cameras.firstWhere(
             (camera) => camera.lensDirection == CameraLensDirection.front);
-    _cameraController = CameraController(front, ResolutionPreset.max);
+    final back = cameras.firstWhere(
+            (camera) => camera.lensDirection == CameraLensDirection.back);
+
+    if (front != null) {
+      _cameraController = CameraController(front, ResolutionPreset.medium);
+    } else if (back != null) {
+      _cameraController = CameraController(back, ResolutionPreset.medium);
+    }
+
     await _cameraController.initialize();
     setState(() => _isLoading = false);
   }
@@ -34,7 +42,7 @@ class _CameraState extends State<Camera> {
     try{
       print("xxxx");
       // Define your request URL and JSON data
-      final String apiUrl = 'http://172.190.66.169:8002/translations';
+      final String apiUrl = 'http://172.190.66.169:8005/translations';
       final Map<String, String> headers = {'Content-Type': 'application/json'};
       final Map<String, dynamic> data = {
         "sessionID": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
@@ -45,8 +53,13 @@ class _CameraState extends State<Camera> {
 
       print("xyxy");
 
-      final response = await http.post(     Uri.parse(apiUrl),     headers: headers,     body: jsonData,   );
+      final response = await http.post(
+        Uri.parse(apiUrl),
+        headers: headers,
+        body: jsonData,
+      );
       print("yyyy");
+      print(response.body);
       if (response.statusCode == 200) {
         print("Request succeeded with response: ${response.body}");
       } else {
@@ -135,7 +148,11 @@ class _CameraState extends State<Camera> {
                   child: Stack(
                     alignment: Alignment.bottomCenter,
                     children: [
-                      CameraPreview(_cameraController),
+                      SizedBox(
+                        width: 300.0,
+                        height: 300.0,
+                        child: CameraPreview(_cameraController)
+                      ),
                       Padding(
                         padding: const EdgeInsets.all(25),
                         child: FloatingActionButton(

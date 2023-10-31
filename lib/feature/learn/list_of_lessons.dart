@@ -7,6 +7,8 @@ import 'list_of_sub_lessons.dart';
 import '../widgets/bottom_nav.dart';
 import '../home-screens/home.dart';
 import '../widgets/left_drawer.dart';
+import 'dart:convert';
+import 'Lesson.dart';
 
 
 class ListOfLessons extends StatefulWidget {
@@ -17,6 +19,21 @@ class ListOfLessons extends StatefulWidget {
 
 class ListOfLessonsState extends State<ListOfLessons> {
   final _formKey = GlobalKey<FormState>();
+
+  final jsonString = '[{"id": 6,"title": "Alphabets","enabled": true}, {"id": 7,"title": "Months","enabled": true}]';
+
+
+  void processJsonData() {
+    List<dynamic> jsonData = json.decode(jsonString);
+    for (var item in jsonData) {
+      int id = item['id'];
+      String title = item['title'];
+      bool enabled = item['enabled'];
+
+      print('ID: $id, Title: $title, Enabled: $enabled');
+    }
+
+  }
 
   int _currentIndex = 2;
   static List<Widget> _screens = [
@@ -169,6 +186,7 @@ class ListOfLessonsState extends State<ListOfLessons> {
                                 keyboardType: TextInputType.text,
                                 onChanged: (value) {
                                   // Handle text changes
+                                  processJsonData();
                                 },
                               ),
                             ),

@@ -17,6 +17,8 @@ class Login extends StatefulWidget {
 
 class LoginState extends State<Login> {
   final _formKey = GlobalKey<FormState>();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context){
@@ -75,6 +77,7 @@ class LoginState extends State<Login> {
                       Container(
                         margin: EdgeInsets.only(left:15.0, right:15.0,top:5, bottom:5 ),
                         child: TextFormField(
+                          controller: _emailController,
                           decoration: InputDecoration(
                             contentPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 5.0),
                             hintText: 'Enter your email',
@@ -92,6 +95,7 @@ class LoginState extends State<Login> {
                       Container(
                         margin: EdgeInsets.only(left:15.0, right:15.0,top:10, bottom:5 ),
                         child: TextFormField(
+                          controller: _passwordController,
                           obscureText: true,
                           decoration: InputDecoration(
                             contentPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 5.0),
@@ -148,30 +152,33 @@ class LoginState extends State<Login> {
                             ),
                           ),
                           onPressed: () async {
-                            /*Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) => Home()),
-                            ); */
-                            /*try{
-                              Response response = await post(
-                                  Uri.parse('https://reqres.in/api/login'),
-                                  body: {
-                                    'email' : email,
-                                    'password' : password
-                                  }
+                            String emailFieldValue = _emailController.text;
+                            String passwordFieldValue = _passwordController.text;
+                            if ((emailFieldValue == "thejanaakmeemana@gmail.com") && (passwordFieldValue == "thejana")) {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => Home()),
                               );
-                              if(response.statusCode == 200){
-                                var data = jsonDecode(response.body.toString());
-                                print(data['token']);
-                                print('Login successfully');
-
-                              }else {
-                                print('failed');
-                              }
-                            }catch(e){
-                              print(e.toString());
-                            } */
-                          },
+                            }else{
+                              showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return AlertDialog(
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(20.0),
+                                    ),
+                                    title:
+                                    Column(
+                                        children: [
+                                          Container(
+                                            height: 20,
+                                          ),
+                                          Text("Incorrect credentials !"),
+                                        ]
+                                    ),);
+                                },);
+                            }
+                          }
                         ),
                       ),
                       Container(
