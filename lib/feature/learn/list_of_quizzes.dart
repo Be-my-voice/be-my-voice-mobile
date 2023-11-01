@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/widgets.dart';
@@ -16,7 +18,107 @@ class ListOfQuizzes extends StatefulWidget {
 }
 
 class ListOfQuizzesState extends State<ListOfQuizzes> {
+  @override
+  void initState() {
+    super.initState();
+    processJsonData();
+  }
+
   final _formKey = GlobalKey<FormState>();
+
+  final jsonString = '[ { "id": 1, "quizName": "Months", "quizDescription": "Months in year", "enabled": true }, { "id": 2, "quizName": "Days of week", "quizDescription": "Days of week", "enabled": true } ]';
+  List<Widget> quizGestureDetectors = [];
+
+  void processJsonData() {
+    List<dynamic> jsonData = json.decode(jsonString);
+    for (var item in jsonData) {
+      int id = item['id'];
+      String quizName = item['quizName'];
+      String quizDescription = item['quizDescription'];
+      bool enabled = item['enabled'];
+      quizGestureDetectors.add(
+        Container(
+          margin: EdgeInsets.only(top:5.0, bottom: 5.0),
+          decoration: BoxDecoration(
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.withOpacity(0.5),
+                spreadRadius: 0.5,
+                blurRadius: 2,
+                offset: Offset(0, 6), // Offset of the shadow
+              ),
+            ],
+            borderRadius: BorderRadius.circular(10.0),
+            color: Color(0xFFFFFFFF),
+          ),
+          padding: EdgeInsets.all(15.0),
+          child: Row(
+            children: [
+              Icon(
+                Icons.quiz_outlined, // The icon to display
+                color: Color(0xFF147B72), // Color of the icon
+                size: 35.0,
+              ),
+              SizedBox(
+                width:5,
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  RichText(
+                    text: TextSpan(
+                      text:'$quizName',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 14,
+                        color: Color(0xFF147B72),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height:5,
+                  ),
+                  RichText(
+                    text: TextSpan(
+                      text:'$quizDescription',
+                      style: TextStyle(
+                        fontSize: 10,
+                        color: Color(0xFF000000),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              Spacer(),
+              ElevatedButton(
+                child: Text('Start',
+                  style: TextStyle(
+                    fontSize: 12.0, // Replace with your desired font size
+                  ),
+                ),
+                style: ButtonStyle(
+                  fixedSize: MaterialStateProperty.all(Size(95, 30)),
+                  backgroundColor: MaterialStateProperty.all<Color>(
+                      Color(0xFF147B72)),
+                  shape: MaterialStateProperty.all<
+                      RoundedRectangleBorder>(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                  ),
+                ),
+                onPressed: () {
+                  Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => OngoingQuiz(quizId: '$id', quizName: '$quizName')),
+                  );
+                },
+              ),
+            ],
+          ),
+        ),
+      );
+    }
+  }
 
   int _currentIndex = 0;
 
@@ -184,167 +286,9 @@ class ListOfQuizzesState extends State<ListOfQuizzes> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
-                            Container(
-                              margin: EdgeInsets.only(top:5.0, bottom: 5.0),
-                              decoration: BoxDecoration(
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.grey.withOpacity(0.5),
-                                    spreadRadius: 0.5,
-                                    blurRadius: 2,
-                                    offset: Offset(0, 6), // Offset of the shadow
-                                  ),
-                                ],
-                                borderRadius: BorderRadius.circular(10.0),
-                                color: Color(0xFFFFFFFF),
-                              ),
-                              padding: EdgeInsets.all(15.0),
-                              child: Row(
-                                children: [
-                                  Icon(
-                                    Icons.quiz_outlined, // The icon to display
-                                    color: Color(0xFF147B72), // Color of the icon
-                                    size: 35.0,
-                                  ),
-                                  SizedBox(
-                                    width:5,
-                                  ),
-                                  Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      RichText(
-                                        text: TextSpan(
-                                          text:'Days of the Week',
-                                          style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 14,
-                                            color: Color(0xFF147B72),
-                                          ),
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height:5,
-                                      ),
-                                      RichText(
-                                        text: TextSpan(
-                                          text:'15 questions',
-                                          style: TextStyle(
-                                            fontSize: 10,
-                                            color: Color(0xFF000000),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  Spacer(),
-                                  ElevatedButton(
-                                    child: Text('Start',
-                                      style: TextStyle(
-                                        fontSize: 12.0, // Replace with your desired font size
-                                      ),
-                                    ),
-                                    style: ButtonStyle(
-                                      fixedSize: MaterialStateProperty.all(Size(95, 30)),
-                                      backgroundColor: MaterialStateProperty.all<Color>(
-                                          Color(0xFF147B72)),
-                                      shape: MaterialStateProperty.all<
-                                          RoundedRectangleBorder>(
-                                        RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(20),
-                                        ),
-                                      ),
-                                    ),
-                                    onPressed: () {
-                                      Navigator.push(context,
-                                        MaterialPageRoute(builder: (context) => OngoingQuiz()),
-                                      );
-                                    },
-                                  ),
-                                ],
-                              ),
-                            ),
+                            ...quizGestureDetectors,
 
-                            Container(
-                              margin: EdgeInsets.only(top:5.0, bottom: 5.0),
-                              decoration: BoxDecoration(
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.grey.withOpacity(0.5),
-                                    spreadRadius: 0.5,
-                                    blurRadius: 2,
-                                    offset: Offset(0, 6), // Offset of the shadow
-                                  ),
-                                ],
-                                borderRadius: BorderRadius.circular(10.0),
-                                color: Color(0xFFFFFFFF),
-                              ),
-                              padding: EdgeInsets.all(15.0),
-                              child: Row(
-                                children: [
-                                  Icon(
-                                    Icons.quiz_outlined, // The icon to display
-                                    color: Color(0xFF147B72), // Color of the icon
-                                    size: 35.0,
-                                  ),
-                                  SizedBox(
-                                    width:10,
-                                  ),
-                                  Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      RichText(
-                                        text: TextSpan(
-                                          text:'Months',
-                                          style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 14,
-                                            color: Color(0xFF147B72),
-                                          ),
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height:5,
-                                      ),
-                                      RichText(
-                                        text: TextSpan(
-                                          text:'15 questions',
-                                          style: TextStyle(
-                                            fontSize: 10,
-                                            color: Color(0xFF000000),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  Spacer(),
-                                  ElevatedButton(
-                                    child: Text('Start',
-                                      style: TextStyle(
-                                        fontSize: 12.0, // Replace with your desired font size
-                                      ),
-                                    ),
-                                    style: ButtonStyle(
-                                      fixedSize: MaterialStateProperty.all(Size(95, 30)),
-                                      backgroundColor: MaterialStateProperty.all<Color>(
-                                          Color(0xFF147B72)),
-                                      shape: MaterialStateProperty.all<
-                                          RoundedRectangleBorder>(
-                                        RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(20),
-                                        ),
-                                      ),
-                                    ),
-                                    onPressed: () {
-                                      /*Navigator.push(context,
-                                        MaterialPageRoute(builder: (context) => Login()),
-                                        ); */
-                                    },
-                                  ),
-                                ],
-                              ),
-                            ),
-
-                            Container(
+                            /*Container(
                               margin: EdgeInsets.only(top:5.0, bottom: 5.0),
                               decoration: BoxDecoration(
                                 boxShadow: [
@@ -422,7 +366,7 @@ class ListOfQuizzesState extends State<ListOfQuizzes> {
                                   ),
                                 ],
                               ),
-                            ),
+                            ), */
 
 
                           ]

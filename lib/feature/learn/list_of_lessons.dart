@@ -41,7 +41,7 @@ class ListOfLessonsState extends State<ListOfLessons> {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => ListOfSubLessons(lessonId: '$id',)),
+                MaterialPageRoute(builder: (context) => ListOfSubLessons(lessonId: '$id', title: '$title')),
               );
             },
             child: Container(
@@ -87,7 +87,8 @@ class ListOfLessonsState extends State<ListOfLessons> {
                       ),
                       RichText(
                         text: TextSpan(
-                          text:'Completed 0 out of 12',
+                          //text:'Completed 0 out of 12',
+                          text: 'Lesson chapter - $id',
                           style: TextStyle(
                             fontSize: 10,
                             color: Color(0xFF000000),

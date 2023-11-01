@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/widgets.dart';
@@ -10,7 +12,8 @@ import '../widgets/screens.dart';
 
 class ListOfSubLessons extends StatefulWidget {
   var lessonId;
-  ListOfSubLessons({required this.lessonId});
+  var title;
+  ListOfSubLessons({required this.lessonId, this.title});
   createState() {
     return ListOfSubLessonsState();
   }
@@ -18,12 +21,102 @@ class ListOfSubLessons extends StatefulWidget {
 
 class ListOfSubLessonsState extends State<ListOfSubLessons> {
   int lessonId = 0;
+  String title = "";
   @override
   void initState() {
     super.initState();
     lessonId = int.parse(widget.lessonId);
+    title = widget.title;
+    processJsonData();
   }
   int _currentIndex = 0;
+
+  final jsonString = '[{ "id": 10, "lessonId": 4, "sectionName": "Monday", "sectionDescription": "First day of week", "video": "p牥癩敷⹭瀴" } ,{ "id": 11, "lessonId": 4, "sectionName": "Tuesday", "sectionDescription": "Second day of week", "video": "p牥癩敷⹭瀴" }]';
+  List<List<String>> subLessonListArray = [];
+  List<Widget> subLessonGestureDetectors = [];
+
+  void processJsonData() {
+    List<dynamic> jsonData = json.decode(jsonString);
+    for (var item in jsonData) {
+      int id = item['id'];
+      int lessonId = item['lessonId'];
+      String sectionName = item['sectionName'];
+      String video = item['video'];
+      subLessonListArray.add(['$id', '$lessonId', '$sectionName', '$video']);
+      print('ID: $id, lessonId: $lessonId, Enabled: $sectionName, video: $video');
+      subLessonGestureDetectors.add(
+        GestureDetector(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => OngoingLesson(subLessonId : '$id', title: '$title',)),
+            );
+          },
+          child: Container(
+            width: 180.0,
+            margin: EdgeInsets.only(top:5.0, bottom: 5.0),
+            decoration: BoxDecoration(
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.5),
+                  spreadRadius: 1,
+                  blurRadius: 2,
+                  offset: Offset(0, 6), // Offset of the shadow
+                ),
+              ],
+              borderRadius: BorderRadius.circular(6.0),
+              color: Color(0xFFFFFFFF),
+              border: Border.all(
+                color: Color(0xFF147B72), // Replace with your desired border color
+                width: 1.0, // Replace with your desired border width
+              ),
+            ),
+            padding: EdgeInsets.only(bottom: 15.0),
+            child: Column(
+                children: [
+                  Image.asset('assets/image/splash-screen/sign_lang_sample.png', width: 178.0, ),
+                  Container(
+                    height: 5,
+                  ),
+                  Container(
+                    alignment: Alignment.center,
+                    child: RichText(
+                      text: TextSpan(
+                        text:'$sectionName',
+                        style: TextStyle(
+                          fontSize: 15,
+                          color: Color(0xFF000000),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Container(
+                    height: 5,
+                  ),
+                  Container(
+                    width:120,
+                    child: Row(
+                      children: [
+                        Image.asset('assets/image/splash-screen/camera.png', width: 10.0, ),
+                        RichText(
+                          text: TextSpan(
+                            text:' 00.10',
+                            style: TextStyle(
+                              fontSize: 8,
+                              color: Color(0xFF000000),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ]
+            ),
+          ),
+        ),
+      );
+    }
+  }
 
 
   void _onItemTapped(int index) {
@@ -107,30 +200,28 @@ class ListOfSubLessonsState extends State<ListOfSubLessons> {
                     height:15,
                   ),
 
-                  Expanded(
-                    child: Container(
-                      margin: EdgeInsets.only(left: 20.0, right: 20.0),
-                      child:Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(
-                              Icons.photo_album_outlined, // The icon to display
-                              color: Color(0xFF147B72), // Color of the icon
-                              size: 35.0,
-                            ),
-                            RichText(
-                              text: TextSpan(
-                                text: '$lessonId Days of the week',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 20,
-                                  color: Color(0xFF147B72),
-                                ),
+                  Container(
+                    margin: EdgeInsets.only(left: 20.0, right: 20.0),
+                    child:Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.photo_album_outlined, // The icon to display
+                            color: Color(0xFF147B72), // Color of the icon
+                            size: 35.0,
+                          ),
+                          RichText(
+                            text: TextSpan(
+                              text: ' $title',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20,
+                                color: Color(0xFF147B72),
                               ),
                             ),
+                          ),
 
-                          ]
-                      ),
+                        ]
                     ),
                   ),
 
@@ -146,10 +237,11 @@ class ListOfSubLessonsState extends State<ListOfSubLessons> {
 
                       child: Column(
                           children: <Widget>[
+                            ...subLessonGestureDetectors,
                             Container(
                               height: 10,
                             ),
-                            Row(
+                            /*Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 GestureDetector(
@@ -427,7 +519,7 @@ class ListOfSubLessonsState extends State<ListOfSubLessons> {
                                   ),
                                 ),
                               ],
-                            ),
+                            ), */
 
                             Container(
                               height: 10,

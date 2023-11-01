@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/widgets.dart';
@@ -7,12 +9,49 @@ import '../widgets/left_drawer.dart';
 
 
 class OngoingLesson extends StatefulWidget {
+  var subLessonId;
+  var title;
+  OngoingLesson({required this.subLessonId, this.title});
   createState() {
     return OngoingLessonState();
   }
 }
 
 class OngoingLessonState extends State<OngoingLesson> {
+  var id = 0;
+  var sectionName = "";
+  var sectionDescription = "";
+  var video = "";
+
+  final jsonString = '{ "id": 10, "lessonId": 4, "sectionName": "Jan", "sectionDescription": "First Month","video": "p牥癩敷⹭瀴" }';
+
+  void processJsonData(){
+    Map<String, dynamic> jsonObject = jsonDecode(jsonString);
+    sectionName = jsonObject["sectionName"];
+    sectionDescription = jsonObject["sectionDescription"];
+    video = jsonObject["video"];
+  }
+
+
+  /*void processJsonData() {
+    List<dynamic> jsonData = json.decode(jsonString);
+    for (var item in jsonData) {
+      int id = item['id'];
+      int sectionName = item['sectionName'];
+      String sectionDescription = item['sectionDescription'];
+      String video = item['video'];
+    }
+  }*/
+
+  int subLessonId = 0;
+  String title = "";
+  @override
+  void initState() {
+    super.initState();
+    subLessonId = int.parse(widget.subLessonId);
+    title = widget.title;
+    processJsonData();
+  }
 
   int _selectedIndex = 0;
   static List<Widget> _screens = [
@@ -313,30 +352,28 @@ class OngoingLessonState extends State<OngoingLesson> {
                     height:15,
                   ),
 
-                  Expanded(
-                    child: Container(
-                      margin: EdgeInsets.only(left: 20.0, right: 20.0),
-                      child:Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(
-                              Icons.photo_album_outlined, // The icon to display
-                              color: Color(0xFF147B72), // Color of the icon
-                              size: 35.0,
-                            ),
-                            RichText(
-                              text: TextSpan(
-                                text: ' Days of the week',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 20,
-                                  color: Color(0xFF147B72),
-                                ),
+                  Container(
+                    margin: EdgeInsets.only(left: 20.0, right: 20.0),
+                    child:Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.photo_album_outlined, // The icon to display
+                            color: Color(0xFF147B72), // Color of the icon
+                            size: 35.0,
+                          ),
+                          RichText(
+                            text: TextSpan(
+                              text: ' $title',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20,
+                                color: Color(0xFF147B72),
                               ),
                             ),
+                          ),
 
-                          ]
-                      ),
+                        ]
                     ),
                   ),
 
@@ -416,7 +453,7 @@ class OngoingLessonState extends State<OngoingLesson> {
                                             alignment: Alignment.center,
                                             child: RichText(
                                               text: TextSpan(
-                                                text:'Monday',
+                                                text:'$sectionName',
                                                 style: TextStyle(
                                                   fontSize: 18,
                                                   color: Color(0xFF000000),
@@ -437,7 +474,7 @@ class OngoingLessonState extends State<OngoingLesson> {
                             Container(
                               height: 15,
                             ),
-                            Row(
+                            /*Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   RichText(
@@ -451,11 +488,26 @@ class OngoingLessonState extends State<OngoingLesson> {
                                   ),
 
                                 ]
+                            ), */
+                            Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  RichText(
+                                    text: TextSpan(
+                                      text: '$sectionDescription',
+                                      style: TextStyle(
+                                        fontSize: 14,
+                                        color: Color(0xFF147B72),
+                                      ),
+                                    ),
+                                  ),
+
+                                ]
                             ),
                             Container(
                               height: 15,
                             ),
-                            Row(
+                            /*Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 ElevatedButton(
@@ -528,7 +580,7 @@ class OngoingLessonState extends State<OngoingLesson> {
                                   },
                                 ),
                               ],
-                            ),
+                            ), */
                             Container(
                               height:15,
                             ),

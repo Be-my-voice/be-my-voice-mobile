@@ -1,21 +1,66 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/services.dart';
+import 'Question.dart';
 import 'quiz_answer_wrong.dart';
 import 'quiz_answer_correct.dart';
 import 'list_of_quizzes.dart';
 import '../widgets/bottom_nav.dart';
 import '../widgets/left_drawer.dart';
 import '../widgets/screens.dart';
+import 'package:http/http.dart' as http;
 
 class OngoingQuiz extends StatefulWidget {
+  var quizId;
+  var quizName;
+  OngoingQuiz({required this.quizId, this.quizName});
   createState() {
     return OngoingQuizState();
   }
 }
 
 class OngoingQuizState extends State<OngoingQuiz> {
+  String jsonString = '[ { "id": 1, "quizId": 2, "question": "what is this", "answer1": "a1", "answer2": "a2", "answer3": "a3", "answer4": "a4", "correctAnswer": "a3"},{ "id": 2, "quizId": 2, "question": "what is this thing", "answer1": "a1", "answer2": "a2", "answer3": "a3", "answer4": "a4", "correctAnswer": "a3" },{ "id": 5, "quizId": 2, "question": "what is the sign in the video represents", "answer1": "a1", "answer2": "a2", "answer3": "a3", "answer4": "a4", "correctAnswer": "a4" } ]';
+
+  Future<List<Question>> fetchQuestions() async {
+    final response = await http.get(
+      Uri.parse('http://172.190.66.169:8003/api/question/get-questions-by-quiz-id/2'),
+      headers: {'accept': '*/*'},
+    );
+
+    if (response.statusCode == 200) {
+      final List<dynamic> data = json.decode(response.body);
+      return data.map((item) => Question.fromJson(item)).toList();
+    } else {
+      throw Exception('Failed to fetch questions');
+    }
+  }
+
+
+  late Future<List<Question>> listOfQuestions;
+  int questionsListCount = 0;
+  int questionNumber = 0;
+
+
+  int quizId = 0;
+  String quizName = "";
+  var questionCount = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    quizId = int.parse(widget.quizId);
+    quizName = widget.quizName;
+    listOfQuestions = fetchQuestions();
+    fetchQuestions().then((List<Question> questions) {
+      questionsListCount = questions.length;
+      print("Number of questions: $questionsListCount");
+    });
+    print(listOfQuestions.toString());
+  }
 
   int _currentIndex = 0;
 
@@ -162,7 +207,7 @@ class OngoingQuizState extends State<OngoingQuiz> {
                                               onPressed: () {
                                                 Navigator.push(
                                                 context,
-                                                MaterialPageRoute(builder: (context) => OngoingQuiz()),
+                                                MaterialPageRoute(builder: (context) => OngoingQuiz(quizId: '$quizId', quizName: '$quizName')),
                                               );
                                               },
                                             ),
@@ -224,30 +269,28 @@ class OngoingQuizState extends State<OngoingQuiz> {
                     height:15,
                   ),
 
-                  Expanded(
-                    child: Container(
-                      margin: EdgeInsets.only(left: 20.0, right: 20.0),
-                      child:Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(
-                              Icons.photo_album_outlined, // The icon to display
-                              color: Color(0xFF147B72), // Color of the icon
-                              size: 35.0,
-                            ),
-                            RichText(
-                              text: TextSpan(
-                                text: ' Days of the week',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 20,
-                                  color: Color(0xFF147B72),
-                                ),
+                  Container(
+                    margin: EdgeInsets.only(left: 20.0, right: 20.0),
+                    child:Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.photo_album_outlined, // The icon to display
+                            color: Color(0xFF147B72), // Color of the icon
+                            size: 35.0,
+                          ),
+                          RichText(
+                            text: TextSpan(
+                              text: ' $quizName',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20,
+                                color: Color(0xFF147B72),
                               ),
                             ),
+                          ),
 
-                          ]
-                      ),
+                        ]
                     ),
                   ),
 
@@ -326,7 +369,7 @@ class OngoingQuizState extends State<OngoingQuiz> {
                                             alignment: Alignment.center,
                                             child: RichText(
                                               text: TextSpan(
-                                                text:'What does above sign indicate?',
+                                                text: 'What is indicated here ?',
                                                 style: TextStyle(
                                                   fontSize: 14,
                                                   color: Color(0xFF000000),
@@ -512,9 +555,18 @@ class OngoingQuizState extends State<OngoingQuiz> {
                                     ),
                                   ),
                                   onPressed: () {
+                                    setState(() {
+                                      if(questionCount > 0){
+                                        questionNumber--;
+                                      }else{
+                                        questionNumber = 0;
+                                      }
+                                      print(questionNumber);
+                                    });
                                     /*Navigator.push(context,
-                                     MaterialPageRoute(builder: (context) => Signup()),
+                                     MaterialPageRoute(builder: (context) => OngoingQuiz(quizId: '$quizId', quizName: '$quizName')),
                                       ); */
+
                                   },
                                 ),
                                 Container(
@@ -545,9 +597,18 @@ class OngoingQuizState extends State<OngoingQuiz> {
                                     ),
                                   ),
                                   onPressed: () {
+                                    setState(() {
+                                      if(questionNumber < (questionsListCount-1)) {
+                                        questionNumber++;
+                                      }else{
+                                        questionNumber = questionsListCount-1;
+                                      }
+                                      print(questionNumber);
+                                    });
                                     /*Navigator.push(context,
-                                     MaterialPageRoute(builder: (context) => Login()),
+                                     MaterialPageRoute(builder: (context) => OngoingQuiz(quizId: '$quizId', quizName: '$quizName')),
                                      ); */
+
                                   },
                                 ),
                               ],

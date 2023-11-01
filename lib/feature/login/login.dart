@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/widgets.dart';
@@ -154,6 +156,67 @@ class LoginState extends State<Login> {
                           onPressed: () async {
                             String emailFieldValue = _emailController.text;
                             String passwordFieldValue = _passwordController.text;
+                            try{
+                              Response response = await post(
+                                  Uri.parse('http://172.190.66.169:8006/users/login'),
+                                  body: {
+                                    'email' : emailFieldValue ,
+                                    'password' : passwordFieldValue
+                                  }
+                              );
+
+                              if(response.statusCode == 200){
+                                var data = jsonDecode(response.body.toString());
+                                print(data);
+                                if(data["message"] == "User logged in successfully"){
+                                  Navigator.push(context,
+                                    MaterialPageRoute(builder: (context) => Home()),
+                                  );
+                                }else{
+                                  showDialog(
+                                    context: context,
+                                    builder: (BuildContext context) {
+                                      return AlertDialog(
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(20.0),
+                                        ),
+                                        title:
+                                        Column(
+                                            children: [
+                                              Container(
+                                                height: 20,
+                                              ),
+                                              Text("Incorrect credentials !"),
+                                            ]
+                                        ),);
+                                    },);
+                                }
+
+
+                              }else {
+                                showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return AlertDialog(
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(20.0),
+                                      ),
+                                      title:
+                                      Column(
+                                          children: [
+                                            Container(
+                                              height: 20,
+                                            ),
+                                            Text("Login failed !"),
+                                          ]
+                                      ),);
+                                  },);
+                              }
+                            }catch(e){
+                              print(e.toString());
+                            }
+
+
                             if ((emailFieldValue == "thejanaakmeemana@gmail.com") && (passwordFieldValue == "thejana")) {
                               Navigator.push(
                                 context,
