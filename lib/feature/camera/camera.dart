@@ -29,9 +29,9 @@ class _CameraState extends State<Camera> {
             (camera) => camera.lensDirection == CameraLensDirection.back);
 
     if (front != null) {
-      _cameraController = CameraController(front, ResolutionPreset.medium);
+      _cameraController = CameraController(front, ResolutionPreset.high);
     } else if (back != null) {
-      _cameraController = CameraController(back, ResolutionPreset.medium);
+      _cameraController = CameraController(back, ResolutionPreset.high);
     }
 
     await _cameraController.initialize();
